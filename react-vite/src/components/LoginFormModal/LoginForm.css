@@ -1,0 +1,11 @@
+.login-modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-modal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
