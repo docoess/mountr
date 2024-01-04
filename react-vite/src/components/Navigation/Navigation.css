@@ -1,3 +1,33 @@
+.navigation-container {
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid black;
+}
+
 .profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  background-color: #85a5e9;
+  border: 2px black solid;
+  justify-content: end;
   position: absolute;
+  border-radius: 5px;
+  padding: 10px;
+  right: 20px;
+  top: 40px;
+}
+
+.profile-dropdown > li{
+  list-style: none;
+}
+
+.navigation-logo {
+  height: 50px;
+  border-radius: 8px;
+}
+
+.profile-login-button {
+  height: 50%;
 }
