@@ -37,7 +37,7 @@ def create_post():
       post_image = upload['url'],
       caption = form.data['caption'],
       featured_mount = form.data['featured_mount'],
-      authorId = current_user
+      authorId = current_user.id
     )
 
     db.session.add(new_post)
