@@ -1,0 +1,14 @@
+.post-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  max-width: 400px;
+  height: 300px;
+  margin: 8px;
+}
+
+.post-card-image {
+  max-width: 250px;
+  max-height: 250px;
+}
