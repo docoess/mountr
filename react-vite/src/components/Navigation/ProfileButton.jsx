@@ -51,7 +51,7 @@ function ProfileButton() {
               <li>{user.username}</li>
               <li>{user.email}</li>
               <li>
-                <NavLink to='/'>Create a Post</NavLink>
+                <NavLink to='/feed/new'>Create a Post</NavLink>
               </li>
               <li>
                 <button onClick={logout}>Log Out</button>
