@@ -16,6 +16,8 @@ export default function MainFeedPage() {
     getPosts();
   }, [dispatch]);
 
+  console.log('MAIN FEED ALL POSTS', allPosts)
+
   return (
     <div className="main-feed-container">
       <h1 className="main-feed-header">All Posts</h1>
