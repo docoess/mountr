@@ -48,9 +48,9 @@ function LoginFormModal() {
   }
 
   return (
-    <>
+    <div className="login-modal-container">
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+      <form className='login-modal-form' onSubmit={handleSubmit}>
         <label>
           Email
           <input
@@ -74,7 +74,7 @@ function LoginFormModal() {
         <button type="submit">Log In</button>
         <button onClick={demoLogin}>Demo User</button>
       </form>
-    </>
+    </div>
   );
 }
 

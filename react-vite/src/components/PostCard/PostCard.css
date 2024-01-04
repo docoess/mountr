@@ -12,3 +12,7 @@
   max-width: 250px;
   max-height: 250px;
 }
+
+.post-card-caption {
+  padding: 20px;
+}
