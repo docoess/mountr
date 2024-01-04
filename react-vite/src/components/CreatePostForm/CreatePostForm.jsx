@@ -33,7 +33,6 @@ export default function CreatePostForm() {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log('STARTING FORM SUBMIT');
 
     setHasSubmitted(true)
 
@@ -48,7 +47,6 @@ export default function CreatePostForm() {
 
     setImageLoading(true);
     let post = await dispatch(createPostThunk(formData));
-    console.log('AFTER THUNK DISPATCH')
     setHasSubmitted(false);
     navigate('/feed');
   }

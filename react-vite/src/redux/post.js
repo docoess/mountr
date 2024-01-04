@@ -49,6 +49,7 @@ function postsReducer(state = {}, action) {
 
     case CREATE_POST: {
       const newState = {...state};
+      console.log('CREATE POST THUNK payload', action.payload);
       return {...newState, [action.payload.id]: action.payload}
     }
 
