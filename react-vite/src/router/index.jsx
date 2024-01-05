@@ -5,6 +5,7 @@ import LandingPage from '../components/LandingPage/LandingPage';
 import MainFeedPage from '../components/MainFeedPage/MainFeedPage';
 import Layout from './Layout';
 import CreatePostForm from '../components/CreatePostForm/CreatePostForm';
+import SinglePost from '../components/SinglePost/SinglePost';
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "feed/new",
         element: <CreatePostForm />
+      },
+      {
+        path: "feed/:postId",
+        element: <SinglePost />
       },
     ],
   },

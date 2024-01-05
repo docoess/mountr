@@ -16,6 +16,8 @@ class Post(db.Model):
   caption = db.Column(db.String(255), nullable=False)
   featured_mount = db.Column(db.String(255), nullable=False)
 
+  author = db.relationship("User", back_populates="posts")
+
   def to_dict(self, printer=False):
       return_dict = {
           "id": self.id,
