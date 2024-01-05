@@ -15,6 +15,22 @@ def get_feed():
   posts = [post.to_dict() for post in Post.query.all()]
   return posts
 
+@feed_routes.route('/<int:id>')
+def get_single_post(id):
+  """
+  Returns a single post by id
+  """
+
+  post = Post.query.get(id)
+
+  author = post.author
+  author_dict = author.to_dict()
+
+  return_dict = post.to_dict()
+  return_dict['author'] = author_dict
+
+  return return_dict
+
 @feed_routes.route('/new', methods=['POST'])
 @login_required
 def create_post():

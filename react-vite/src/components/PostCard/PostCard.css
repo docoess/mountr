@@ -6,6 +6,7 @@
   max-width: 400px;
   height: 300px;
   margin: 8px;
+  cursor: pointer;
 }
 
 .post-card-image {
