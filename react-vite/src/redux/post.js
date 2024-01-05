@@ -1,9 +1,15 @@
 const GET_POSTS = '/posts/GET_POSTS';
+const GET_SINGLE_POST = '/posts/GET_SINGLE_POST';
 const CREATE_POST = '/posts/CREATE_POST';
 
 const getAllPosts = posts => ({
   type: GET_POSTS,
   payload: posts
+})
+
+const getSinglePost = post => ({
+  type: GET_SINGLE_POST,
+  payload: post
 })
 
 const createPost = post => ({
@@ -20,6 +26,18 @@ export const allPostsThunk = () => async dispatch => {
     }
     dispatch(getAllPosts(posts))
     return posts
+  }
+}
+
+export const singlePostThunk = (postId) => async dispatch => {
+  const res = await fetch(`/api/feed/${postId}`);
+  if (res.ok) {
+    const post = await res.json();
+    if (post.errors) {
+      return post.errors;
+    }
+    dispatch(getSinglePost(post))
+    return post
   }
 }
 
@@ -45,6 +63,10 @@ function postsReducer(state = {}, action) {
       });
 
       return newState;
+    }
+
+    case GET_SINGLE_POST: {
+      return {...state, [action.payload.id]: action.payload}
     }
 
     case CREATE_POST: {
