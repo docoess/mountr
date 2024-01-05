@@ -9,3 +9,8 @@ class PostForm(FlaskForm):
   post_image = FileField('Post Image', validators=[FileRequired(), FileAllowed(list(IMG_ALLOWED_EXTENSIONS))])
   caption = StringField('Caption', validators=[DataRequired()])
   featured_mount = StringField('Featured Mount', validators=[DataRequired()])
+
+class UpdatePostForm(FlaskForm):
+  post_image = FileField('Post Image', validators=[FileAllowed(list(IMG_ALLOWED_EXTENSIONS))])
+  caption = StringField('Caption', validators=[DataRequired()])
+  featured_mount = StringField('Featured Mount', validators=[DataRequired()])

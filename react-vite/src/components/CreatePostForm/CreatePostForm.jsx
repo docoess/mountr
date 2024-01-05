@@ -38,7 +38,7 @@ export default function CreatePostForm() {
 
     if (Object.values(validationErrors).length) {
       return
-    };
+    }
 
     const formData = new FormData();
     formData.append('post_image', postImage);
