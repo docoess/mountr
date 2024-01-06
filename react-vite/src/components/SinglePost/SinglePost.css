@@ -1,4 +1,19 @@
+.single-post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .single-post-image {
   max-width: 800px;
   max-height: 800px;
+}
+
+.single-post-details {
+  margin-top: 20px;
+}
+
+.single-post-mount, .single-post-owner {
+  font-weight: bold;
+  font-size: 18pt;
 }
