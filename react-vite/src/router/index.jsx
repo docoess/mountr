@@ -6,6 +6,7 @@ import MainFeedPage from '../components/MainFeedPage/MainFeedPage';
 import Layout from './Layout';
 import CreatePostForm from '../components/CreatePostForm/CreatePostForm';
 import SinglePost from '../components/SinglePost/SinglePost';
+import UpdatePostForm from '../components/UpdatePostForm/UpdatePostForm';
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
         path: "feed/:postId",
         element: <SinglePost />
       },
+      {
+        path: "feed/:postId/update",
+        element: <UpdatePostForm />
+      }
     ],
   },
 ]);
