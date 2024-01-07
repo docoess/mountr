@@ -14,11 +14,9 @@ class Post(db.Model):
   authorId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
   post_image = db.Column(db.String(255), nullable=False)
   caption = db.Column(db.String(255), nullable=False)
-  featured_mount = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("mounts.id")))
+  featured_mount = db.Column(db.String(255), nullable=False)
 
   author = db.relationship("User", back_populates="posts")
-  mount_id = db.relationship("Mount", back_populates="post_featured")
-  post_comment = db.relationship("Comment", back_populates="post")
 
   def to_dict(self, printer=False):
       return_dict = {

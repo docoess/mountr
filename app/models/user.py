@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod, user_mounts
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -15,8 +15,6 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     posts = db.relationship("Post", back_populates="author")
-    comments = db.relationship("Comment", back_populates="comment_author")
-    owned_mounts = db.relationship("Mount", secondary=user_mounts, back_populates="mount_owner")
 
     @property
     def password(self):
