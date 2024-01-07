@@ -25,7 +25,8 @@ export default function SinglePost() {
       <div className="single-post-container">
         <img className="single-post-image" src={post.post_image}/>
         <div className="single-post-details">
-          <span>{post.featured_mount} owned by {post.author && post.author.username}</span>
+          <span className="single-post-mount">{post.featured_mount}</span> <span>owned by</span> <span className="single-post-owner">{post.author && post.author.username}</span>
+          <p>{post.caption}</p>
         </div>
       </div>
       <div className="comments-container">

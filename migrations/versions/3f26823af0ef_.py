@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 1a0cf2be91fa
+Revision ID: 3f26823af0ef
 Revises:
-Create Date: 2024-01-03 12:37:19.359593
+Create Date: 2024-01-07 12:14:31.985185
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '1a0cf2be91fa'
+revision = '3f26823af0ef'
 down_revision = None
 branch_labels = None
 depends_on = None
