@@ -1,6 +1,7 @@
 const GET_POSTS = '/posts/GET_POSTS';
 const GET_SINGLE_POST = '/posts/GET_SINGLE_POST';
 const CREATE_POST = '/posts/CREATE_POST';
+const UPDATE_POST = '/posts/UPDATE';
 
 const getAllPosts = posts => ({
   type: GET_POSTS,
@@ -15,6 +16,11 @@ const getSinglePost = post => ({
 const createPost = post => ({
   type: CREATE_POST,
   payload: post
+})
+
+const updatePost = postId => ({
+  type: UPDATE_POST,
+  payload: postId
 })
 
 export const allPostsThunk = () => async dispatch => {
@@ -54,6 +60,26 @@ export const createPostThunk = formData => async dispatch => {
   }
 }
 
+export const updatePostThunk = (postId, formData) => async dispatch => {
+  try {
+    const res = await fetch(`/api/feed/${postId}/update`, {
+      method: "PUT",
+      body: formData
+    })
+
+    if (res.ok) {
+      const post = await res.json();
+      dispatch(updatePost(postId))
+    } else {
+      const post = await res.json()
+      return post
+    }
+  } catch (e) {
+    console.log('update thunk errors', e)
+    return e
+  }
+}
+
 function postsReducer(state = {}, action) {
   switch (action.type) {
     case GET_POSTS: {
@@ -73,6 +99,11 @@ function postsReducer(state = {}, action) {
       const newState = {...state};
       console.log('CREATE POST THUNK payload', action.payload);
       return {...newState, [action.payload.id]: action.payload}
+    }
+
+    case UPDATE_POST: {
+      const newState = {...state, [action.payload]:{...state[action.payload]}}
+      return newState
     }
 
     default:
