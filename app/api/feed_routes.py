@@ -1,8 +1,8 @@
 from flask_login import login_required, current_user
 from .aws_helpers import get_unique_filename, remove_file_from_s3, upload_file_to_s3
 from flask import Blueprint, request
-from ..forms import PostForm, UpdatePostForm
-from app.models import db, Post, User
+from ..forms import PostForm, UpdatePostForm, CommentForm, UpdateCommentForm
+from app.models import db, Post, User, Comment
 
 feed_routes = Blueprint('feed', __name__)
 
@@ -118,3 +118,29 @@ def delete_post(id):
 
   remove_file_from_s3(old_url)
   return {"message": "Successfully Deleted"}
+
+@feed_routes.route('/<int:id>/comment/new', methods=['POST'])
+@login_required
+def create_comment_on_post(id):
+  """
+  Adds a comment to the post of specified id
+  """
+
+  form = CommentForm()
+
+  form["csrf_token"].data = request.cookies["csrf_token"]
+
+  if form.validate_on_submit():
+
+    new_comment = Comment(
+      content = form.data['content'],
+      authorId = current_user.id,
+      postId = id
+    )
+
+    db.session.add(new_comment)
+    db.session.commit()
+    return new_comment.to_dict()
+  else:
+    print(form.errors)
+    return form.errors
