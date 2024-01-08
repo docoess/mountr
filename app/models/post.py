@@ -17,7 +17,7 @@ class Post(db.Model):
   featured_mount = db.Column(db.String(255), nullable=False)
 
   author = db.relationship("User", back_populates="posts")
-  post_comments = db.relationship("Comment", back_populates="post")
+  post_comments = db.relationship("Comment", back_populates="post", cascade="all, delete")
 
   def to_dict(self, printer=False):
       return_dict = {
