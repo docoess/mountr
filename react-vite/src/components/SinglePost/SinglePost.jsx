@@ -5,6 +5,7 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeletePostModal from "./DeletePostModal";
 import './SinglePost.css';
 import { singlePostThunk } from "../../redux/post";
+import CommentCard from "../CommentCard/CommentCard";
 
 export default function SinglePost() {
   const dispatch = useDispatch();
@@ -39,7 +40,11 @@ export default function SinglePost() {
         </div>
       </div>
       <div className="comments-container">
-
+          {
+            post && post.comments && post.comments.map(comment => (
+              <CommentCard key={comment.id} comment={comment} />
+            ))
+          }
       </div>
     </div>
   )
