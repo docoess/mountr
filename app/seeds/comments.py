@@ -14,8 +14,22 @@ def seed_comments():
     content='Still haven\'t found this one!'
   )
 
+  comment_3 = Comment(
+      authorId=3,
+      postId=2,
+      content='Woah, moneybags much?!'
+  )
+
+  comment_4 = Comment(
+      authorId=1,
+      postId=2,
+      content='I know, right? Save some for the rest of us!'
+  )
+
   db.session.add(comment_1)
   db.session.add(comment_2)
+  db.session.add(comment_3)
+  db.session.add(comment_4)
   db.session.commit()
 
 def undo_comments():
