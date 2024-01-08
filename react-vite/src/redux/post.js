@@ -2,6 +2,7 @@ const GET_POSTS = '/posts/GET_POSTS';
 const GET_SINGLE_POST = '/posts/GET_SINGLE_POST';
 const CREATE_POST = '/posts/CREATE_POST';
 const UPDATE_POST = '/posts/UPDATE';
+const DELETE_POST = '/posts/DELETE';
 
 const getAllPosts = posts => ({
   type: GET_POSTS,
@@ -20,6 +21,11 @@ const createPost = post => ({
 
 const updatePost = postId => ({
   type: UPDATE_POST,
+  payload: postId
+})
+
+const deletePost = postId => ({
+  type: DELETE_POST,
   payload: postId
 })
 
@@ -80,6 +86,21 @@ export const updatePostThunk = (postId, formData) => async dispatch => {
   }
 }
 
+export const deletePostThunk = postId => async dispatch => {
+  const res = await fetch(`/api/feed/${postId}/delete`, {
+    method: 'DELETE'
+  })
+
+  if (res.ok) {
+    const post = await res.json();
+    dispatch(deletePost(postId))
+  } else {
+      const e = await res.json()
+      console.log(e)
+      return null
+  }
+}
+
 function postsReducer(state = {}, action) {
   switch (action.type) {
     case GET_POSTS: {
@@ -104,6 +125,12 @@ function postsReducer(state = {}, action) {
     case UPDATE_POST: {
       const newState = {...state, [action.payload]:{...state[action.payload]}}
       return newState
+    }
+
+    case DELETE_POST: {
+      const newState = {...state};
+      delete newState[action.payload.id];
+      return newState;
     }
 
     default:
