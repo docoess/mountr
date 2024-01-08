@@ -2,7 +2,7 @@ from flask_login import login_required, current_user
 from .aws_helpers import get_unique_filename, remove_file_from_s3, upload_file_to_s3
 from flask import Blueprint, request
 from ..forms import PostForm, UpdatePostForm
-from app.models import db, Post
+from app.models import db, Post, User
 
 feed_routes = Blueprint('feed', __name__)
 
@@ -23,11 +23,17 @@ def get_single_post(id):
 
   post = Post.query.get(id)
 
+  comments = [comment.to_dict() for comment in post.post_comments]
+  for c in comments:
+    user = User.query.get(c["authorId"])
+    c["author_name"] = user.username
+
   author = post.author
   author_dict = author.to_dict()
 
   return_dict = post.to_dict()
   return_dict['author'] = author_dict
+  return_dict['comments'] = comments
 
   return return_dict
 

@@ -17,3 +17,9 @@
   font-weight: bold;
   font-size: 18pt;
 }
+
+.comments-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
