@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createPostThunk } from "../../redux/post";
+import './CreatePostForm.css'
 
 export default function CreatePostForm() {
   const dispatch = useDispatch();
@@ -65,9 +66,11 @@ export default function CreatePostForm() {
             placeholder="Mount name"
             onChange={e => setFeaturedMount(e.target.value)}
             required/>
-          {hasSubmitted && validationErrors.featuredMount && (
-            <span className="error">{validationErrors.featuredMount}</span>
-          )}
+            <p className="error">
+              {hasSubmitted && validationErrors.featuredMount && (
+                <span className="error">{validationErrors.featuredMount}</span>
+              )}
+            </p>
         </label>
         <label className="new-post-input">
           <span>Please provide a short caption for your post:</span>
@@ -77,9 +80,11 @@ export default function CreatePostForm() {
             placeholder="Caption"
             onChange={e => setCaption(e.target.value)}
             required/>
-          {hasSubmitted && validationErrors.caption && (
-            <span className="error">{validationErrors.caption}</span>
-          )}
+            <p className="error">
+              {hasSubmitted && validationErrors.caption && (
+                <span className="error">{validationErrors.caption}</span>
+              )}
+            </p>
         </label>
         <label className="new-post-input">
           <span>Upload your mount image!</span>
@@ -87,9 +92,11 @@ export default function CreatePostForm() {
             type='file'
             accept="image/*"
             onChange={e => setPostImage(e.target.files[0])}/>
-          {hasSubmitted && validationErrors.postImage && (
-            <span className="error">{validationErrors.postImage}</span>
-          )}
+          <p className="error">
+            {hasSubmitted && validationErrors.postImage && (
+              <span className="error">{validationErrors.postImage}</span>
+            )}
+          </p>
         </label>
         <button className="new-post-submit-button">Submit</button>
         {(imageLoading)&& <p>Loading...</p>}
