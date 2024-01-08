@@ -144,3 +144,16 @@ def create_comment_on_post(id):
   else:
     print(form.errors)
     return form.errors
+
+@feed_routes.route('/<int:postId>/comment/<int:commentId>/delete', methods=['DELETE'])
+@login_required
+def delete_comment(postId, commentId):
+  """
+  Deletes a comment based on id on a specfic post
+  """
+
+  target_comment = Comment.query.get(commentId)
+
+  db.session.delete(target_comment)
+  db.session.commit()
+  return {"message": "Successfully Deleted"}

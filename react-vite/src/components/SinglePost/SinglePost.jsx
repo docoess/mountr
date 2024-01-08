@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeletePostModal from "./DeletePostModal";
+import DeleteCommentModal from "./DeleteCommentModal";
 import './SinglePost.css';
 import { createCommentThunk, singlePostThunk } from "../../redux/post";
 import CommentCard from "../CommentCard/CommentCard";
@@ -84,7 +85,12 @@ export default function SinglePost() {
       <div className="comments-container">
           {
             post?.comments && post.comments.map(comment => (
+              <div>
               <CommentCard key={comment.id} comment={comment} />
+                {
+                 currentUser && comment?.authorId === currentUser.id && <span><NavLink to={`/feed/${postId}/comment/${comment.id}/update`}>Update</NavLink><OpenModalMenuItem itemText={'Delete'} modalComponent={<DeleteCommentModal postId={postId} commentId={comment.id} />} className={"fake-button"} /></span>
+                }
+              </div>
             ))
           }
       </div>
