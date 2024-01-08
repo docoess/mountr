@@ -4,6 +4,7 @@ const CREATE_POST = '/posts/CREATE_POST';
 const UPDATE_POST = '/posts/UPDATE';
 const DELETE_POST = '/posts/DELETE';
 const CREATE_COMMENT = '/comments/CREATE_COMMENT';
+const DELETE_COMMENT = 'comments/DELETE';
 
 const getAllPosts = posts => ({
   type: GET_POSTS,
@@ -33,6 +34,11 @@ const deletePost = postId => ({
 const createComment = (comment, postId) => ({
   type: CREATE_COMMENT,
   payload: {comment, postId}
+})
+
+const deleteComment = (commentId, postId) => ({
+  type: DELETE_COMMENT,
+  payload: {commentId, postId}
 })
 
 export const allPostsThunk = () => async dispatch => {
@@ -123,6 +129,21 @@ export const createCommentThunk = (comment, postId) => async dispatch => {
   }
 }
 
+export const deleteCommentThunk = (commentId, postId) => async dispatch => {
+  const res = await fetch(`/api/feed/${postId}/comment/${commentId}/delete`, {
+    method: 'DELETE'
+  });
+
+  if (res.ok) {
+    const post = await res.json();
+    dispatch(deleteComment(commentId, postId));
+  } else {
+    const e = await res.json();
+    console.log(e);
+    return null;
+  }
+}
+
 function postsReducer(state = {}, action) {
   switch (action.type) {
     case GET_POSTS: {
@@ -159,6 +180,11 @@ function postsReducer(state = {}, action) {
       const newState = {...state};
       newState[action.payload.postId]['comments'] = {};
       newState[action.payload.postId]['comments'][action.payload.comment.id] = action.payload.comment;
+      return newState;
+    }
+
+    case DELETE_COMMENT: {
+      const newState = {...state};
       return newState;
     }
 
