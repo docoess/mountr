@@ -9,8 +9,8 @@ export default function UpdatePostForm() {
   const { postId } = useParams();
   const post = useSelector(state => state.posts[postId]);
   const [caption, setCaption] = useState(post?.caption);
-  const [postImage, setPostImage] = useState(post?.postImage);
-  const [featuredMount, setFeaturedMount] = useState(post?.featuredMount);
+  const [postImage, setPostImage] = useState(post?.post_image);
+  const [featuredMount, setFeaturedMount] = useState(post?.featured_mount);
   const [imageLoading, setImageLoading] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);

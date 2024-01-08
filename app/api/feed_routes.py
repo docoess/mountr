@@ -96,3 +96,19 @@ def update_post(id):
   else:
     print(form.errors)
     return form.errors
+
+@feed_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_post(id):
+  """
+  Deletes a post by id
+  """
+
+  target_post = Post.query.get(id)
+
+  old_url = target_post.post_image
+  db.session.delete(target_post)
+  db.session.commit()
+
+  remove_file_from_s3(old_url)
+  return {"message": "Successfully Deleted"}
