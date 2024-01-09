@@ -56,9 +56,11 @@ export default function UpdateCommentForm() {
             onChange={e => setCommentContent(e.target.value)}
             required
           />
-          {hasSubmitted && validationErrors.content && (
-            <span className="error">{validationErrors.content}</span>
-          )}
+          <p className="error">
+            {hasSubmitted && validationErrors.content && (
+              <span className="error">{validationErrors.content}</span>
+            )}
+          </p>
         </label>
         <button>Submit</button>
       </form>

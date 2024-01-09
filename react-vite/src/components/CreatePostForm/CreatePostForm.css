@@ -2,3 +2,9 @@
   height: 25px;
   color: red;
 }
+
+.new-post-submit-button {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}

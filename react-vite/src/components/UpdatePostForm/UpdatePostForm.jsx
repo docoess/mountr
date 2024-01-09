@@ -67,9 +67,11 @@ export default function UpdatePostForm() {
             placeholder="Mount name"
             onChange={e => setFeaturedMount(e.target.value)}
             required/>
-          {hasSubmitted && validationErrors.featuredMount && (
-            <span className="error">{validationErrors.featuredMount}</span>
-          )}
+          <p className="error">
+            {hasSubmitted && validationErrors.featuredMount && (
+              <span className="error">{validationErrors.featuredMount}</span>
+            )}
+          </p>
         </label>
         <label className="update-post-input">
           <span>Please provide a short caption for your post:</span>
@@ -79,9 +81,11 @@ export default function UpdatePostForm() {
             placeholder="Caption"
             onChange={e => setCaption(e.target.value)}
             required/>
-          {hasSubmitted && validationErrors.caption && (
-            <span className="error">{validationErrors.caption}</span>
-          )}
+          <p className="error">
+            {hasSubmitted && validationErrors.caption && (
+              <span className="error">{validationErrors.caption}</span>
+            )}
+          </p>
         </label>
         <label className="update-post-input">
           <span>Upload your mount image!</span>

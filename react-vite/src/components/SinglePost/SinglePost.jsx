@@ -46,15 +46,15 @@ export default function SinglePost() {
   }
 
   return post && (
-    <div>
-      <NavLink to='/feed'>&lt; Back</NavLink>
+    <div className="single-post-main">
+      <NavLink className="back-button" to='/feed'>&lt; Back</NavLink>
       <div className="single-post-container">
         <img className="single-post-image" src={post.post_image}/>
         <div className="single-post-details">
           {
             post && currentUser && post.authorId == currentUser.id && (
-              <div>
-                <NavLink to={`/feed/${postId}/update`} className={"fake-button"}>Update</NavLink> <OpenModalMenuItem itemText={'Delete'} modalComponent={<DeletePostModal postId={postId} />} className={"fake-button"} />
+              <div className="post-buttons">
+                <NavLink to={`/feed/${postId}/update`} className={"fake-button-update"}>Update</NavLink> <OpenModalMenuItem itemText={'Delete'} modalComponent={<DeletePostModal postId={postId} />} className={"fake-button-delete"} />
               </div>
             )
           }
@@ -88,7 +88,7 @@ export default function SinglePost() {
               <div key={comment.id}>
               <CommentCard comment={comment} />
                 {
-                 currentUser && comment?.authorId === currentUser.id && <span><NavLink to={`/feed/${postId}/comment/${comment.id}/update`}>Update</NavLink><OpenModalMenuItem itemText={'Delete'} modalComponent={<DeleteCommentModal postId={postId} commentId={comment.id} />} className={"fake-button"} /></span>
+                 currentUser && comment?.authorId === currentUser.id && <span className="comment-buttons"><NavLink to={`/feed/${postId}/comment/${comment.id}/update`} className={"fake-button-update"}>Update</NavLink><OpenModalMenuItem itemText={'Delete'} modalComponent={<DeleteCommentModal postId={postId} commentId={comment.id} />} className={"fake-button-delete"} /></span>
                 }
               </div>
             ))
