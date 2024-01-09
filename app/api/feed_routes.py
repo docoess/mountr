@@ -28,6 +28,8 @@ def get_single_post(id):
     user = User.query.get(c["authorId"])
     c["author_name"] = user.username
 
+  comments = {comment['id']: comment for comment in comments}
+
   author = post.author
   author_dict = author.to_dict()
 
@@ -157,3 +159,25 @@ def delete_comment(postId, commentId):
   db.session.delete(target_comment)
   db.session.commit()
   return {"message": "Successfully Deleted"}
+
+@feed_routes.route('/<int:postId>/comment/<int:commentId>/update', methods=['PUT'])
+@login_required
+def update_comment(postId, commentId):
+  """
+  Updates a comment on a specific post by specified comment id
+  """
+
+  form = UpdateCommentForm()
+
+  form["csrf_token"].data = request.cookies["csrf_token"]
+
+  if form.validate_on_submit():
+    comment = Comment.query.get(commentId)
+    comment.content = form.data['content']
+
+    db.session.commit()
+
+    return comment.to_dict()
+  else:
+    print(form.errors)
+    return form.errors
