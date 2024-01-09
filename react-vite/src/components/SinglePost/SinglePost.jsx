@@ -84,9 +84,9 @@ export default function SinglePost() {
       </div>
       <div className="comments-container">
           {
-            post?.comments && post.comments.map(comment => (
-              <div>
-              <CommentCard key={comment.id} comment={comment} />
+            post?.comments && Object.values(post.comments).map(comment => (
+              <div key={comment.id}>
+              <CommentCard comment={comment} />
                 {
                  currentUser && comment?.authorId === currentUser.id && <span><NavLink to={`/feed/${postId}/comment/${comment.id}/update`}>Update</NavLink><OpenModalMenuItem itemText={'Delete'} modalComponent={<DeleteCommentModal postId={postId} commentId={comment.id} />} className={"fake-button"} /></span>
                 }
