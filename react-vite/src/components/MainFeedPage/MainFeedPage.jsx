@@ -23,7 +23,7 @@ export default function MainFeedPage() {
       <h1 className="main-feed-header">All Posts</h1>
       <div className="main-feed-add-button-container">
         {
-          currentUser && <NavLink to={'/feed/new'}>Create a Post!</NavLink>
+          currentUser && <NavLink className="fake-button" to={'/feed/new'}>Create a Post!</NavLink>
         }
       </div>
       <div className="all-posts-container">

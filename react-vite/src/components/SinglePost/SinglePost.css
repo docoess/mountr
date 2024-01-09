@@ -22,4 +22,72 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 50%;
+  margin-top: 8px;
+  padding: 4px;
+  border: 2px solid black;
+}
+
+.fake-button-update {
+  border: 1px solid black;
+  background-color: #4e82eb;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  margin: 2px;
+  text-decoration: none;
+
+  &:hover{
+      cursor: pointer;
+  }
+}
+
+.comment-buttons > li, .post-buttons > li {
+  border: 1px solid black;
+  background-color: #e62626;
+  max-width: 49px;
+  list-style: none;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  margin: 2px;
+  text-decoration: none;
+
+  &:hover{
+      cursor: pointer;
+  }
+}
+
+.comment-buttons, .post-buttons {
+  display: flex;
+}
+
+.back-button {
+  align-self: flex-start;
+  border: 1px solid black;
+  background-color: #686868;
+  border-radius: 4px;
+  max-width: 49px;
+  list-style: none;
+  color: white;
+  font-weight: bold;
+  padding: 4px;
+  margin: 2px;
+  text-decoration: none;
+
+  &:hover{
+      cursor: pointer;
+  }
+}
+
+.comment-submit-button {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}
+
+.single-post-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
