@@ -42,7 +42,7 @@ function LoginFormModal() {
     if(serverResponse){
       setErrors(serverResponse)
     } else {
-      navigate('/')
+      navigate('/feed')
       closeModal()
     }
   }
