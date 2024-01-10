@@ -41,6 +41,10 @@ function SignupFormModal() {
 
     setHasSubmitted(true);
 
+    if (Object.values(errors).length) {
+      return
+    }
+
     const serverResponse = await dispatch(
       thunkSignup({
         email,
