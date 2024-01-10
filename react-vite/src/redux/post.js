@@ -6,9 +6,15 @@ const DELETE_POST = '/posts/DELETE';
 const CREATE_COMMENT = '/comments/CREATE_COMMENT';
 const DELETE_COMMENT = '/comments/DELETE';
 const UPDATE_COMMENT = '/comments/UPDATE';
+const GET_USERS_POSTS = '/posts/user/GET_POSTS';
 
 const getAllPosts = posts => ({
   type: GET_POSTS,
+  payload: posts
+})
+
+const getUserPosts = posts => ({
+  type: GET_USERS_POSTS,
   payload: posts
 })
 
@@ -55,6 +61,18 @@ export const allPostsThunk = () => async dispatch => {
       return posts.errors;
     }
     dispatch(getAllPosts(posts))
+    return posts
+  }
+}
+
+export const allUsersPostsThunk = userId => async dispatch => {
+  const res = await fetch(`/api/feed/user/${userId}`);
+  if (res.ok) {
+    const posts = await res.json();
+    if (posts.errors) {
+      return posts.errors;
+    }
+    dispatch(getUserPosts(posts))
     return posts
   }
 }
@@ -176,13 +194,21 @@ function postsReducer(state = {}, action) {
       return newState;
     }
 
+    case GET_USERS_POSTS: {
+      const newState = {};
+      action.payload.forEach(post => {
+        newState[post.id] = post
+      });
+
+      return newState;
+    }
+
     case GET_SINGLE_POST: {
       return {...state, [action.payload.id]: action.payload}
     }
 
     case CREATE_POST: {
       const newState = {...state};
-      console.log('CREATE POST THUNK payload', action.payload);
       return {...newState, [action.payload.id]: action.payload}
     }
 
