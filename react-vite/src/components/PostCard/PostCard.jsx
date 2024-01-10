@@ -5,7 +5,7 @@ export default function PostCard({ post }) {
   const redirect = useNavigate();
 
   const clickOnPost = () => {
-    return redirect(`${post.id}`)
+    return redirect(`/feed/${post.id}`)
   }
 
   return (

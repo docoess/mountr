@@ -4,6 +4,7 @@ import SignupFormPage from '../components/SignupFormPage';
 import LandingPage from '../components/LandingPage/LandingPage';
 import MainFeedPage from '../components/MainFeedPage/MainFeedPage';
 import Layout from './Layout';
+import MyFeedPage from '../components/MyFeedPage/MyFeedPage';
 import CreatePostForm from '../components/CreatePostForm/CreatePostForm';
 import SinglePost from '../components/SinglePost/SinglePost';
 import UpdatePostForm from '../components/UpdatePostForm/UpdatePostForm';
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: "feed/:postId",
         element: <SinglePost />
+      },
+      {
+        path: "feed/user/:userId",
+        element: <MyFeedPage />
       },
       {
         path: "feed/:postId/update",

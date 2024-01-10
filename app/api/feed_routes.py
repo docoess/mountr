@@ -15,6 +15,16 @@ def get_feed():
   posts = [post.to_dict() for post in Post.query.all()]
   return posts
 
+@feed_routes.route('/user/<int:id>')
+def get_my_posts(id):
+  """
+  Returns all posts of a specific user by user's id
+  """
+
+  user_posts = [post.to_dict() for post in Post.query.filter(Post.authorId == id).all()]
+  return user_posts
+
+
 @feed_routes.route('/<int:id>')
 def get_single_post(id):
   """
