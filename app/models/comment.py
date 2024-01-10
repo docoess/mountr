@@ -13,7 +13,7 @@ class Comment(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   authorId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
   postId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("posts.id")))
-  content = db.Column(db.String(1000), nullable=False)
+  content = db.Column(db.String(400), nullable=False)
 
   comment_author = db.relationship("User", back_populates="comments")
   post = db.relationship("Post", back_populates="post_comments")

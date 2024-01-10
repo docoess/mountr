@@ -24,10 +24,14 @@ export default function UpdatePostForm() {
 
     if (featuredMount?.length < 4) {
       errors.featuredMount = 'Mount name must be at least 4 characters'
+    } else if (featuredMount?.length > 50) {
+      errors.featuredMount = 'Mount name must be less than 50 characters'
     }
 
     if (caption?.length < 3) {
       errors.caption = 'Caption must be at least 3 characters'
+    } else if (caption.length > 50) {
+      errors.caption = 'Caption must be less than 50 characters'
     }
 
     setValidationErrors(errors)
