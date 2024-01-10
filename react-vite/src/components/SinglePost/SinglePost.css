@@ -19,13 +19,29 @@
   font-size: 18pt;
 }
 
-.comments-container {
+.comments-container-holder {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 50%;
   margin-top: 8px;
   padding: 4px;
+}
+
+.comments-container {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  width: 50%;
+  margin-top: 8px;
+  padding: 4px;
+}
+
+.comment {
+  margin: 4px;
+  width: 100%;
+  border-left: 2px solid black;
+  padding-left: 8px;
 }
 
 .fake-button-update {
