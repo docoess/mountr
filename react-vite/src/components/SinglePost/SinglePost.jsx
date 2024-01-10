@@ -27,6 +27,18 @@ export default function SinglePost() {
     getPost();
   }, [dispatch, postId])
 
+  useEffect(() => {
+    const errors = {};
+
+    if (commentContent.length < 2) {
+      errors.commentContent = 'Comment must be at least 2 characters'
+    } else if (commentContent.length > 400) {
+      errors.commentContent = 'Comment must be less than 400 characters'
+    }
+
+    setValidationErrors(errors);
+  }, [commentContent])
+
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -42,6 +54,7 @@ export default function SinglePost() {
     let comment = await dispatch(createCommentThunk(formData, postId));
     await dispatch(singlePostThunk(postId));
     setHasSubmitted(false);
+    setCommentContent('');
     navigate(`/feed/${postId}`);
   }
 
@@ -75,6 +88,12 @@ export default function SinglePost() {
                     onChange={e => setCommentContent(e.target.value)}
                     required
                   />
+                <p className="error">
+                  {
+                    hasSubmitted && validationErrors.commentContent && (
+                      <span className="error">{validationErrors.commentContent}</span>
+                  )}
+                </p>
                 </label>
                 <button className="comment-submit-button">Submit</button>
               </form>

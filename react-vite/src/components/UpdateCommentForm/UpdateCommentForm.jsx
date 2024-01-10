@@ -23,6 +23,8 @@ export default function UpdateCommentForm() {
 
     if (commentContent?.length < 2) {
       errors.content = "Comment must be at least 2 characters"
+    } else if (commentContent?.length > 400) {
+      errors.content = "Comment must be less than 400 characters"
     }
 
     setValidationErrors(errors)
