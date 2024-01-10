@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
@@ -11,17 +11,35 @@ function SignupFormModal() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const { closeModal } = useModal();
+
+  useEffect(() => {
+    const validationErrors = {};
+
+    if (username.length < 4) {
+      validationErrors.username = 'Username must be at least 4 characters'
+    } else if (username.length > 40) {
+      validationErrors.username = 'Username must be at most 40 characters'
+    }
+
+    if (password.length < 8) {
+      validationErrors.password = 'Password must be at least 8 characters'
+    } else if (password.length > 40) {
+      validationErrors.password = 'Password must be at most 40 characters'
+    }
+
+    if (password !== confirmPassword) {
+      validationErrors.confirm = 'Confirm Password field must be the same as the Password field'
+    }
+
+    setErrors(validationErrors);
+  }, [username, password, confirmPassword])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      return setErrors({
-        confirmPassword:
-          "Confirm Password field must be the same as the Password field",
-      });
-    }
+    setHasSubmitted(true);
 
     const serverResponse = await dispatch(
       thunkSignup({
@@ -34,16 +52,17 @@ function SignupFormModal() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
+      setHasSubmitted(false);
       closeModal();
     }
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
+    <div className="signup-form-container">
+      <h1 className="signup-header">Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <label className="signup-form-input">
           Email
           <input
             type="text"
@@ -52,8 +71,12 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
+        <p className="error">
+          {
+            hasSubmitted && errors.email && <span>{errors.email}</span>
+          }
+        </p>
+        <label className="signup-form-input">
           Username
           <input
             type="text"
@@ -62,8 +85,12 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
-        <label>
+        <p className="error">
+          {
+            hasSubmitted && errors.username && <span>{errors.username}</span>
+          }
+        </p>
+        <label className="signup-form-input">
           Password
           <input
             type="password"
@@ -72,8 +99,12 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
-        <label>
+        <p className="error">
+          {
+            hasSubmitted && errors.password && <span>{errors.password}</span>
+          }
+        </p>
+        <label className="signup-form-input">
           Confirm Password
           <input
             type="password"
@@ -82,10 +113,14 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+        <p className="error">
+          {
+            hasSubmitted && errors.confirmPassword && <span>{errors.confirmPassword}</span>
+          }
+        </p>
+        <button className="signup-button" type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 

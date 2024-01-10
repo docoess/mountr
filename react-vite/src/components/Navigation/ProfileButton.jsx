@@ -5,6 +5,7 @@ import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { NavLink } from "react-router-dom";
+import './Navigation.css';
 
 function ProfileButton() {
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ function ProfileButton() {
                 <NavLink to='/feed/new'>Create a Post</NavLink>
               </li>
               <li>
-                <button onClick={logout}>Log Out</button>
+                <button className="logout-button" onClick={logout}>Log Out</button>
               </li>
             </>
           ) : (

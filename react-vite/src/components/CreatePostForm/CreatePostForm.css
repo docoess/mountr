@@ -5,6 +5,11 @@
 
 .new-post-submit-button {
   background-color: green;
+  border-radius: 8px;
   color: white;
   font-weight: bold;
+
+  &:hover{
+    cursor: pointer;
+  }
 }
