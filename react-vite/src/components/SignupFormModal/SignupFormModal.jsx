@@ -34,7 +34,7 @@ function SignupFormModal() {
     }
 
     setErrors(validationErrors);
-  }, [username, password, confirmPassword])
+  }, [username, password, confirmPassword, email])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
