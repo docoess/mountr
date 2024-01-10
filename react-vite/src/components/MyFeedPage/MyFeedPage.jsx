@@ -11,6 +11,14 @@ export default function MyFeedPage() {
   const { userId } = useParams();
   const currentUser = useSelector(state => state.session.user);
 
+
+  console.log('USER POSTS', userPosts)
+
+  let postsAuthor = 'Someone';
+  if (Object.values(userPosts).length) {
+    postsAuthor = userPosts[0].author_name;
+  }
+
   useEffect(() => {
     const getPosts = async () => {
       await dispatch(allUsersPostsThunk(userId));
@@ -21,7 +29,9 @@ export default function MyFeedPage() {
 
   return (
     <div className="main-feed-container">
-      <h1 className="main-feed-header">All Posts</h1>
+      {
+        currentUser && currentUser.id == userId ? <h1 className="main-feed-header">My Posts</h1> : <h1 className="main-feed-header">{postsAuthor}&apos;s Posts</h1>
+      }
       <div className="main-feed-add-button-container">
         {
           currentUser && <NavLink className="fake-button" to={'/feed/new'}>Create a Post!</NavLink>

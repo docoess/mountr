@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   border: 2px solid black;
+  border-radius: 12px;
   max-width: 400px;
   height: 300px;
   margin: 8px;
@@ -12,6 +13,7 @@
 .post-card-image {
   max-width: 250px;
   max-height: 141px;
+  border-radius: 8px;
 }
 
 .post-card-caption {

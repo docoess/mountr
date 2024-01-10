@@ -16,6 +16,7 @@ function Navigation() {
         {
          currentUser && <NavLink className="my-posts-button" to={`/feed/user/${currentUser.id}`}>My Posts</NavLink>
         }
+        <NavLink className="my-posts-button" to='/feed'>All Posts</NavLink>
         <ProfileButton />
       </div>
     </div>
