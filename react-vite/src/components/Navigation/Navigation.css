@@ -36,6 +36,7 @@
 .my-posts-button {
   margin-right: 20px;
   border: 1px solid black;
+  border-radius: 8px;
   background-color: #4e82eb;
   color: white;
   font-weight: bold;

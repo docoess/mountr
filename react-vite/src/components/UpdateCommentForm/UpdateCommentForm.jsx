@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCommentThunk } from "../../redux/post";
+import './UpdateCommentForm.css';
 
 
 export default function UpdateCommentForm() {
@@ -62,7 +63,7 @@ export default function UpdateCommentForm() {
             )}
           </p>
         </label>
-        <button>Submit</button>
+        <button className="update-comment-button">Submit</button>
       </form>
     </div>
   )
