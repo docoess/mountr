@@ -2,6 +2,7 @@ import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteCommentThunk, singlePostThunk } from "../../redux/post";
+import './DeleteCommentModal.css';
 
 export default function DeleteCommentModal({ commentId, postId }) {
   const dispatch = useDispatch();
@@ -22,8 +23,8 @@ export default function DeleteCommentModal({ commentId, postId }) {
   return (
     <div className="delete-modal">
       <h1>Are you sure you want to delete this comment?</h1>
-      <button onClick={handleConfirm} className="delete-modal-button">Yes</button>
-      <button onClick={close} className="delete-modal-button">No</button>
+      <button onClick={handleConfirm} className="delete-modal-button-confirm">Yes</button>
+      <button onClick={close} className="delete-modal-button-cancel">No</button>
     </div>
   )
 }
