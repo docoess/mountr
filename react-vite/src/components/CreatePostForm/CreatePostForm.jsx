@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createPostThunk } from "../../redux/post";
 import './CreatePostForm.css'
+import placeholderImage from '../../placeholder.jpg';
 
 export default function CreatePostForm() {
   const dispatch = useDispatch();
@@ -12,7 +13,8 @@ export default function CreatePostForm() {
   const [featuredMount, setFeaturedMount] = useState('');
   const [imageLoading, setImageLoading] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState(false)
-  const [validationErrors, setValidationErrors] = useState({})
+  const [validationErrors, setValidationErrors] = useState({});
+  const [imageURL, setImageURL] = useState(placeholderImage);
 
   useEffect(() => {
     const errors = {};
@@ -56,6 +58,16 @@ export default function CreatePostForm() {
     navigate('/feed');
   }
 
+  const fileWrap = (e) => {
+    e.stopPropagation();
+
+    const tempFile = e.target.files[0];
+
+    const newImageURL = URL.createObjectURL(tempFile);
+    setImageURL(newImageURL);
+    setPostImage(tempFile);
+  }
+
   return (
     <div className="new-post-container">
       <h1 className="new-post-header">Create a new post!</h1>
@@ -90,18 +102,10 @@ export default function CreatePostForm() {
               )}
             </p>
         </label>
-        <label className="new-post-input">
-          <span>Upload your mount image!</span>
-          <input
-            type='file'
-            accept="image/*"
-            onChange={e => setPostImage(e.target.files[0])}/>
-          <p className="error">
-            {hasSubmitted && validationErrors.postImage && (
-              <span className="error">{validationErrors.postImage}</span>
-            )}
-          </p>
-        </label>
+        <div className="file-inputs-container">
+          <input type="file" accept="image/png, image/jpeg, image/jpg" id="new-post-image-input" onChange={fileWrap}></input>
+          <label htmlFor="new-post-image-input" className="file-input-labels-noname"><img src={imageURL} className="thumbnails-noname"></img></label>
+        </div>
         <button className="new-post-submit-button">Submit</button>
         {(imageLoading)&& <p>Loading...</p>}
       </form>
