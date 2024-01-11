@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { singlePostThunk, updatePostThunk } from "../../redux/post";
+import './UpdatePostForm.css';
 
 export default function UpdatePostForm() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export default function UpdatePostForm() {
   const [imageLoading, setImageLoading] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [imageURL, setImageURL] = useState(post?.post_image);
 
   useEffect(() => {
     dispatch(singlePostThunk(postId));
@@ -36,6 +38,16 @@ export default function UpdatePostForm() {
 
     setValidationErrors(errors)
   }, [featuredMount, caption]);
+
+  const fileWrap = (e) => {
+    e.stopPropagation();
+
+    const tempFile = e.target.files[0];
+
+    const newImageURL = URL.createObjectURL(tempFile);
+    setImageURL(newImageURL);
+    setPostImage(tempFile);
+  }
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -91,13 +103,10 @@ export default function UpdatePostForm() {
             )}
           </p>
         </label>
-        <label className="update-post-input">
-          <span>Upload your mount image!</span>
-          <input
-            type='file'
-            accept="image/*"
-            onChange={e => setPostImage(e.target.files[0])}/>
-        </label>
+        <div className="file-inputs-container">
+          <input type="file" accept="image/png, image/jpeg, image/jpg" id="update-image-input" onChange={fileWrap}></input>
+          <label htmlFor="update-image-input" className="file-input-labels-noname"><img src={imageURL} className="thumbnails-noname"></img></label>
+        </div>
         <button className="update-submit-button">Submit</button>
         {(imageLoading)&& <p>Loading...</p>}
       </form>
