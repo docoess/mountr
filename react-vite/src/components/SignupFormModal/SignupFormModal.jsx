@@ -67,7 +67,7 @@ function SignupFormModal() {
       {errors.server && <p>{errors.server}</p>}
       <form className="signup-form" onSubmit={handleSubmit}>
         <label className="signup-form-input">
-          Email
+          *Email
           <input
             type="text"
             value={email}
@@ -81,7 +81,7 @@ function SignupFormModal() {
           }
         </p>
         <label className="signup-form-input">
-          Username
+          *Username
           <input
             type="text"
             value={username}
@@ -95,7 +95,7 @@ function SignupFormModal() {
           }
         </p>
         <label className="signup-form-input">
-          Password
+          *Password
           <input
             type="password"
             value={password}
@@ -109,7 +109,7 @@ function SignupFormModal() {
           }
         </p>
         <label className="signup-form-input">
-          Confirm Password
+          *Confirm Password
           <input
             type="password"
             value={confirmPassword}

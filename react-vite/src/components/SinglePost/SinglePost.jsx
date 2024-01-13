@@ -88,14 +88,14 @@ export default function SinglePost() {
                     onChange={e => setCommentContent(e.target.value)}
                     required
                   />
+                </label>
+                <button className="comment-submit-button">Submit</button>
                 <p className="error">
                   {
                     hasSubmitted && validationErrors.commentContent && (
                       <span className="error">{validationErrors.commentContent}</span>
                   )}
                 </p>
-                </label>
-                <button className="comment-submit-button">Submit</button>
               </form>
             </div>
           )

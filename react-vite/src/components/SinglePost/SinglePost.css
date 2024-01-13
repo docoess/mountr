@@ -115,3 +115,7 @@
   flex-direction: column;
   align-items: center;
 }
+
+.new-comment-input > input {
+  width: 250px;
+}
