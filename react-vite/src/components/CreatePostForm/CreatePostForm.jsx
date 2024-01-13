@@ -75,7 +75,7 @@ export default function CreatePostForm() {
       onSubmit={handleSubmit}
       encType="multipart/form-data">
         <label className="new-post-input">
-          <span> What mount are you showing off? </span>
+          <span>*What mount are you showing off? </span>
           <input
             type='text'
             value={featuredMount}
@@ -89,7 +89,7 @@ export default function CreatePostForm() {
             </p>
         </label>
         <label className="new-post-input">
-          <span>Please provide a short caption for your post:</span>
+          <span>*Please provide a short caption for your post:</span>
           <input
             type="text"
             value={caption}
@@ -105,6 +105,11 @@ export default function CreatePostForm() {
         <div className="file-inputs-container">
           <input type="file" accept="image/png, image/jpeg, image/jpg" id="new-post-image-input" onChange={fileWrap}></input>
           <label htmlFor="new-post-image-input" className="file-input-labels-noname"><img src={imageURL} className="thumbnails-noname"></img></label>
+          <p className="error">
+              {hasSubmitted && validationErrors.postImage && (
+                <span className="error">{validationErrors.postImage}</span>
+              )}
+          </p>
         </div>
         <button className="new-post-submit-button">Submit</button>
         {(imageLoading)&& <p>Loading...</p>}

@@ -9,3 +9,28 @@
     cursor: pointer;
   }
 }
+
+.error {
+  height: 25px;
+  color: red;
+}
+
+.update-comment-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.update-comment-input {
+  font-weight: bold;
+}
+
+.update-comment-input > input {
+  width: 300px;
+}
+
+.update-comment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
