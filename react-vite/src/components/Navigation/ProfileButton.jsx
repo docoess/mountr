@@ -49,10 +49,10 @@ function ProfileButton() {
         <ul className={"profile-dropdown"} ref={ulRef}>
           {user ? (
             <>
-              <li>{user.username}</li>
+              <li className="username-dropdown">{user.username}</li>
               <li>{user.email}</li>
-              <li>
-                <NavLink to='/feed/new'>Create a Post</NavLink>
+              <li className="create-new-post-button-container">
+                <NavLink className='create-new-post-button' to='/feed/new'>Create a Post</NavLink>
               </li>
               <li>
                 <button className="logout-button" onClick={logout}>Log Out</button>
@@ -61,11 +61,13 @@ function ProfileButton() {
           ) : (
             <>
               <OpenModalMenuItem
+                className="login-button"
                 itemText="Log In"
                 onItemClick={closeMenu}
                 modalComponent={<LoginFormModal />}
               />
               <OpenModalMenuItem
+                className="signup-button"
                 itemText="Sign Up"
                 onItemClick={closeMenu}
                 modalComponent={<SignupFormModal />}

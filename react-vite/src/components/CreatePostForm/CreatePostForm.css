@@ -1,6 +1,7 @@
 .error {
   height: 25px;
   color: red;
+  font-weight: bold;
 }
 
 .new-post-container {
