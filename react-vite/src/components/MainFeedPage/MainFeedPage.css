@@ -1,5 +1,35 @@
+.main-feed-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .all-posts-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   padding: 12px;
+}
+
+@media (max-width: 500px) {
+  .all-posts-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 800px) {
+  .all-posts-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 801px) and (max-width: 1200px) {
+  .all-posts-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1201px) and (max-width: 1400px) {
+  .all-posts-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
