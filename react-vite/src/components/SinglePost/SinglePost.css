@@ -8,6 +8,7 @@
   max-width: 800px;
   max-height: 800px;
   border-radius: 16px;
+  box-shadow: -8px 8px 4px rgb(80, 80, 80);
 }
 
 .single-post-details {
