@@ -4,7 +4,10 @@ import os
 import requests
 from dotenv import load_dotenv
 
-load_dotenv()
+environment = os.getenv('FLASK_ENV')
+
+if environment != "production":
+  load_dotenv()
 
 blizz_id = os.environ.get('BLIZZ_CLIENT_ID')
 blizz_secret = os.environ.get('BLIZZ_SECRET')

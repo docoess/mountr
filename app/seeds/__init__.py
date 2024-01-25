@@ -35,6 +35,7 @@ def seed():
 def undo():
     undo_comments()
     undo_posts()
+    undo_mounts()
     undo_users()
     # Add other undo functions here
 
