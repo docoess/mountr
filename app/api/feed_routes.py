@@ -22,7 +22,8 @@ def get_all_mounts():
   """
 
   mounts = [mount.to_dict() for mount in Mount.query.all()]
-  return mounts
+  sorted_mounts = sorted(mounts, key=lambda mount: mount["name"])
+  return sorted_mounts
 
 @feed_routes.route('/user/<int:id>')
 def get_my_posts(id):
@@ -67,6 +68,11 @@ def create_post():
   form = PostForm()
 
   form["csrf_token"].data = request.cookies["csrf_token"]
+
+  mounts = [mount.to_dict() for mount in Mount.query.all()]
+  sorted_mounts = sorted(mounts, key=lambda mount: mount["name"])
+
+  form.featured_mount.choices = [mount["name"] for mount in sorted_mounts]
 
   if form.validate_on_submit():
     post_image = form.data['post_image']

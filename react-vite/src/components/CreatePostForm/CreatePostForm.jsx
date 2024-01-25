@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createPostThunk } from "../../redux/post";
+import { allMountsThunk } from "../../redux/mount";
 import './CreatePostForm.css'
 import placeholderImage from '../../placeholder.jpg';
 
@@ -15,15 +16,16 @@ export default function CreatePostForm() {
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [validationErrors, setValidationErrors] = useState({});
   const [imageURL, setImageURL] = useState(placeholderImage);
+  const mounts = useSelector(state => state.mounts);
 
   useEffect(() => {
     const errors = {};
 
-    if (featuredMount.length < 4) {
-      errors.featuredMount = 'Mount name must be at least 4 characters'
-    } else if (featuredMount.length > 50) {
-      errors.featuredMount = 'Mount name must be less than 50 characters'
-    }
+    // if (featuredMount.length < 4) {
+    //   errors.featuredMount = 'Mount name must be at least 4 characters'
+    // } else if (featuredMount.length > 50) {
+    //   errors.featuredMount = 'Mount name must be less than 50 characters'
+    // }
 
     if (caption.length < 3) {
       errors.caption = 'Caption must be at least 3 characters'
@@ -36,7 +38,7 @@ export default function CreatePostForm() {
     }
 
     setValidationErrors(errors)
-  }, [featuredMount, caption, postImage]);
+  }, [caption, postImage]);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -68,6 +70,16 @@ export default function CreatePostForm() {
     setPostImage(tempFile);
   }
 
+  useEffect(() => {
+    const getMounts = async () => {
+      await dispatch(allMountsThunk());
+    }
+
+    getMounts();
+  }, [dispatch])
+
+  console.log(mounts)
+
   return (
     <div className="new-post-container">
       <h1 className="new-post-header">Create a new post!</h1>
@@ -76,17 +88,15 @@ export default function CreatePostForm() {
       encType="multipart/form-data">
         <label className="new-post-input">
           <span>*What mount are you showing off? </span>
-          <input
-            type='text'
-            value={featuredMount}
-            placeholder="Mount name"
+          <select name="featured_mount"
             onChange={e => setFeaturedMount(e.target.value)}
-            required/>
-            <p className="error">
-              {hasSubmitted && validationErrors.featuredMount && (
-                <span className="error">{validationErrors.featuredMount}</span>
-              )}
-            </p>
+          >
+            {
+              mounts && mounts.map(mount => (
+                <option key={mount.id}>{mount.name}</option>
+              ))
+            }
+          </select>
         </label>
         <label className="new-post-input">
           <span>*Please provide a short caption for your post:</span>
