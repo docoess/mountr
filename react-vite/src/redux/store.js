@@ -7,10 +7,12 @@ import {
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import postsReducer from './post';
+import mountsReducer from "./mount";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   posts: postsReducer,
+  mounts: mountsReducer,
 });
 
 let enhancer;
