@@ -9,9 +9,12 @@ from dotenv import load_dotenv
 def get_mounts():
   load_dotenv()
 
+  BLIZZ_CLIENT_ID = os.environ.get('BLIZZ_CLIENT_ID')
+  BLIZZ_SECRET =  os.environ.get('BLIZZ_SECRET')
+
   data = {
-      'client_id': os.environ.get('BLIZZ_CLIENT_ID'),
-      'client_secret': os.environ.get('BLIZZ_SECRET'),
+      'client_id': BLIZZ_CLIENT_ID,
+      'client_secret': BLIZZ_SECRET,
       'grant_type': 'client_credentials',
   }
 
