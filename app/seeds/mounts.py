@@ -2,15 +2,17 @@ from app.models import db, Mount, environment, SCHEMA
 from sqlalchemy.sql import text
 import os
 import requests
-from dotenv import load_dotenv
+from dotenv import load_dotenv, dotenv_values
 
 
 
 def get_mounts():
   load_dotenv()
 
-  blizz_id = os.environ.get('BLIZZ_CLIENT_ID')
-  blizz_secret = os.environ.get('BLIZZ_SECRET')
+  config = dotenv_values('.env')
+
+  blizz_id = config['BLIZZ_CLIENT_ID']
+  blizz_secret = config['BLIZZ_SECRET']
 
   data = {
       'client_id': blizz_id,
