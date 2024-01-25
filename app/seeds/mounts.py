@@ -1,45 +1,45 @@
-from app.models import db, Mount, environment, SCHEMA, User
+from app.models import db, Mount, environment, SCHEMA
 from sqlalchemy.sql import text
+import os
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
+
+blizz_id = os.environ.get('BLIZZ_CLIENT_ID')
+blizz_secret = os.environ.get('BLIZZ_SECRET')
+
+def get_mounts():
+
+  data = {
+      'client_id': blizz_id,
+      'client_secret': blizz_secret,
+      'grant_type': 'client_credentials',
+  }
+
+  token_response = requests.post('https://oauth.battle.net/token', data=data)
+  tok_res = token_response.json()
+  auth_string = tok_res["access_token"]
+  oauth_headers = {
+      'Authorization': f'Bearer {auth_string}',
+      'Battlenet-Namespace': 'static-us'
+  }
+
+  auth_response = requests.get('https://us.api.blizzard.com/data/wow/mount/index', headers=oauth_headers)
+  auth_res = auth_response.json()
+
+  mounts = auth_res["mounts"]
+  mount_list = [{"name": mount["name"]["en_US"], "id": mount["id"]} for mount in mounts]
+
+  return mount_list
+
+
 
 def seed_mounts():
-  users = User.query.all()
+  mounts = get_mounts()
 
-  mount_1 = Mount(
-    name='Ashes of Alar',
-    mount_owner=[users[1]]
-  )
+  [db.session.add(Mount(name=mount["name"], blizzId=mount["id"])) for mount in mounts]
 
-  mount_2 = Mount(
-    name='Mighty Caravan Brutosaur',
-    mount_owner=[users[1]]
-  )
-
-  mount_3 = Mount(
-    name='Elusive Emerald Hawkstrider',
-    mount_owner=[users[0], users[2]]
-  )
-
-  mount_4 = Mount(
-    name='Otherworldly Ottuk Carrier',
-    mount_owner=[users[0], users[1], users[2]]
-  )
-
-  mount_5 = Mount(
-    name='Voidtalon of the Dark Star',
-    mount_owner=[users[2]]
-  )
-
-  mount_6 = Mount(
-    name='Snapback Scuttler',
-    mount_owner=[users[1], users[2]]
-  )
-
-  db.session.add(mount_1)
-  db.session.add(mount_2)
-  db.session.add(mount_3)
-  db.session.add(mount_4)
-  db.session.add(mount_5)
-  db.session.add(mount_6)
   db.session.commit()
 
 def undo_mounts():

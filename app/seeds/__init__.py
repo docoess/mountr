@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .posts import seed_posts, undo_posts
 from .comments import seed_comments, undo_comments
+from.mounts import seed_mounts, undo_mounts
 
 from app.models.db import db, environment, SCHEMA
 
@@ -34,3 +35,9 @@ def undo():
     undo_posts()
     undo_users()
     # Add other undo functions here
+
+@seed_commands.command('mounts')
+def mounts():
+    if environment == 'production':
+        undo_mounts()
+    seed_mounts()
