@@ -21,8 +21,10 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_comments()
         undo_posts()
+        undo_mounts()
         undo_users()
     seed_users()
+    seed_mounts()
     seed_posts()
     seed_comments()
     # Add other seed functions here
@@ -36,8 +38,8 @@ def undo():
     undo_users()
     # Add other undo functions here
 
-@seed_commands.command('mounts')
-def mounts():
-    if environment == 'production':
-        undo_mounts()
-    seed_mounts()
+# @seed_commands.command('mounts')
+# def mounts():
+#     if environment == 'production':
+#         undo_mounts()
+#     seed_mounts()
