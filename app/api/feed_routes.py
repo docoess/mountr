@@ -2,7 +2,7 @@ from flask_login import login_required, current_user
 from .aws_helpers import get_unique_filename, remove_file_from_s3, upload_file_to_s3
 from flask import Blueprint, request
 from ..forms import PostForm, UpdatePostForm, CommentForm, UpdateCommentForm
-from app.models import db, Post, User, Comment
+from app.models import db, Post, User, Comment, Mount
 
 feed_routes = Blueprint('feed', __name__)
 
@@ -14,6 +14,15 @@ def get_feed():
 
   posts = [post.to_dict() for post in Post.query.all()]
   return posts
+
+@feed_routes.route('/mounts')
+def get_all_mounts():
+  """
+  Return a list of all mounts in the DB
+  """
+
+  mounts = [mount.to_dict() for mount in Mount.query.all()]
+  return mounts
 
 @feed_routes.route('/user/<int:id>')
 def get_my_posts(id):
