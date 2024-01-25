@@ -5,8 +5,6 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     FLASK_RUN_PORT = os.environ.get('FLASK_RUN_PORT')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    BLIZZ_CLIENT_ID = os.environ.get('BLIZZ_CLIENT_ID')
-    BLIZZ_SECRET =  os.environ.get('BLIZZ_SECRET')
     # SQLAlchemy 1.4 no longer supports url strings that start with 'postgres'
     # (only 'postgresql') but heroku's postgres add-on automatically sets the
     # url in the hidden config vars to start with postgres.
