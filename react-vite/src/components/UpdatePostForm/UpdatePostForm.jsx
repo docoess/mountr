@@ -24,12 +24,6 @@ export default function UpdatePostForm() {
   useEffect(() => {
     const errors = {};
 
-    if (featuredMount?.length < 4) {
-      errors.featuredMount = 'Mount name must be at least 4 characters'
-    } else if (featuredMount?.length > 50) {
-      errors.featuredMount = 'Mount name must be less than 50 characters'
-    }
-
     if (caption?.length < 3) {
       errors.caption = 'Caption must be at least 3 characters'
     } else if (caption.length > 50) {
@@ -37,7 +31,7 @@ export default function UpdatePostForm() {
     }
 
     setValidationErrors(errors)
-  }, [featuredMount, caption]);
+  }, [caption]);
 
   const fileWrap = (e) => {
     e.stopPropagation();
@@ -61,7 +55,6 @@ export default function UpdatePostForm() {
     const formData = new FormData();
     formData.append('post_image', postImage);
     formData.append('caption', caption);
-    formData.append('featured_mount', featuredMount);
 
     setImageLoading(true);
     let post = await dispatch(updatePostThunk(postId, formData));
@@ -75,20 +68,6 @@ export default function UpdatePostForm() {
       <form className="update-post-form"
       onSubmit={handleSubmit}
       encType="multipart/form-data">
-        <label className="update-post-input">
-          <span> What mount are you showing off? </span>
-          <input
-            type='text'
-            value={featuredMount}
-            placeholder="Mount name"
-            onChange={e => setFeaturedMount(e.target.value)}
-            required/>
-          <p className="error">
-            {hasSubmitted && validationErrors.featuredMount && (
-              <span className="error">{validationErrors.featuredMount}</span>
-            )}
-          </p>
-        </label>
         <label className="update-post-input">
           <span>Please provide a short caption for your post:</span>
           <input

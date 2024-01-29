@@ -2,12 +2,8 @@ from app.models import db, Mount, environment, SCHEMA
 from sqlalchemy.sql import text
 import os
 import requests
-# from dotenv import load_dotenv
-
-
 
 def get_mounts():
-  # load_dotenv()
 
   BLIZZ_CLIENT_ID = os.environ.get('BLIZZ_CLIENT_ID')
   BLIZZ_SECRET =  os.environ.get('BLIZZ_SECRET')
