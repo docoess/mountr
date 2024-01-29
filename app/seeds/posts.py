@@ -33,7 +33,7 @@ def seed_posts():
   post_5 = Post(
       authorId=3,
       post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed5.jpg',
-      caption='Randomly got this back in the day, had no idea it was uncommon then.',
+      caption='Randomly got this in in WoD, no idea it was rare.',
       featured_mount='Voidtalon of the Dark Star'
   )
 
