@@ -1,0 +1,35 @@
+.main-feed-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.all-posts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 12px;
+}
+
+@media (max-width: 620px) {
+  .all-posts-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 621px) and (max-width: 930px) {
+  .all-posts-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 931px) and (max-width: 1240px) {
+  .all-posts-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1241px) and (max-width: 1540px) {
+  .all-posts-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
