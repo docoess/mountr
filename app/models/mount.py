@@ -1,5 +1,6 @@
 from .db import db
 import os
+from .wanted import wanted_mounts
 
 environment = os.getenv('FLASK_ENV')
 SCHEMA = os.environ.get('SCHEMA')
@@ -13,6 +14,8 @@ class Mount(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   blizzId = db.Column(db.Integer, nullable=False)
   name = db.Column(db.String(100), nullable=False)
+
+  mounts_wanted = db.relationship("User", secondary=wanted_mounts, back_populates="want_list")
 
   def to_dict(self, printer=False):
       return_dict = {

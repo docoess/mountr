@@ -121,7 +121,6 @@ def update_post(id):
       post.post_image = upload['url']
 
     post.caption = form.data['caption']
-    post.featured_mount = form.data['featured_mount']
 
     db.session.commit()
 
