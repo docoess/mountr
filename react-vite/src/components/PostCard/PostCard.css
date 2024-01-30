@@ -14,6 +14,7 @@
 
   &:hover{
     transform: rotate(4deg);
+    box-shadow: -4px 4px 2px #4e82eb;
   }
 }
 
