@@ -13,7 +13,7 @@ def get_wanted_mount(postId):
   post = Post.query.get(postId)
   mount_name = post.featured_mount
   user = User.query.get(current_user.id)
-  mount = Mount.query.filter(Mount.name == mount_name).one()
+  mount = Mount.query.filter(Mount.name == mount_name).one_or_none()
 
   if mount in user.want_list:
     return mount.to_dict()
@@ -22,7 +22,7 @@ def get_wanted_mount(postId):
 
 
 
-@mount_routes.route('/<string:mountName>/want')
+@mount_routes.route('/<string:mountName>/want', methods=['POST'])
 @login_required
 def add_mount_to_wanted(mountName):
   """
@@ -39,7 +39,7 @@ def add_mount_to_wanted(mountName):
 
   return mount.to_dict()
 
-@mount_routes.route('/<string:mountName>/unwant')
+@mount_routes.route('/<string:mountName>/unwant', methods=['PATCH'])
 @login_required
 def remove_mount_from_wanted(mountName):
   """
