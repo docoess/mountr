@@ -126,3 +126,16 @@
 .new-comment-input > input {
   width: 250px;
 }
+
+.want-mount-button {
+  color: rgb(177, 106, 0);
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+}
+
+.wanted-mount-selection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
