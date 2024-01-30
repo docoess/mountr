@@ -23,6 +23,7 @@ export default function WantedMounts() {
     <div className="wanted-mounts-container">
       <h1 className="wanted-mounts-header">My Wanted Mounts</h1>
       <div className="wanted-mounts-list-container">
+        <p className="wanted-mounts-description">Click on a mount to be redirected to its Wowhead page for more info!</p>
         <div className="wanted-mounts-list">
           {
             myWanted && (
