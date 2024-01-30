@@ -142,7 +142,8 @@ def seed_posts():
       featured_mount='Frenzied Feltalon'
   )
 
-  posts = [post_1, post_2, post_3, post_4, post_5, post_6, post_7, post_8, post_9, post_10, post_11, post_12, post_13, post_14, post_15, post_16, post_17, post_18, post_19, post_20]
+  posts = [post_1, post_2, post_3, post_4, post_5, post_6, post_7, post_8, post_9, post_10,
+           post_11, post_12, post_13, post_14, post_15, post_16, post_17, post_18, post_19, post_20]
   [db.session.add(post) for post in posts]
   db.session.commit()
 
