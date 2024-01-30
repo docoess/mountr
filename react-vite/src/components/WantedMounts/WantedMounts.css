@@ -7,8 +7,13 @@
 .wowhead-mount-link {
   text-decoration: none;
   font-size: large;
+  width: 100%;
 
   &:hover {
     cursor: pointer;
   }
+}
+
+.wowhead-logo {
+  width: 40px;
 }
