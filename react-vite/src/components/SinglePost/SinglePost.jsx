@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeletePostModal from "./DeletePostModal";
 import DeleteCommentModal from "./DeleteCommentModal";
+import { FaRegStar, FaStar } from "react-icons/fa";
 import './SinglePost.css';
 import { createCommentThunk, singlePostThunk } from "../../redux/post";
+import { singleMountThunk } from "../../redux/mount";
 import CommentCard from "../CommentCard/CommentCard";
 
 export default function SinglePost() {
@@ -15,16 +17,30 @@ export default function SinglePost() {
   const post = useSelector((state) => state.posts[postId]);
   const currentUser = useSelector((state) => state.session.user);
   const [commentContent, setCommentContent] = useState('');
+  const [wanted, setWanted] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
 
 
   useEffect(() => {
     const getPost = async () => {
-      await dispatch(singlePostThunk(postId))
+      await dispatch(singlePostThunk(postId));
     }
 
     getPost();
+  }, [dispatch, postId])
+
+  useEffect(() => {
+    const getWanted = async () => {
+      const wantStatus = await dispatch(singleMountThunk(postId));
+      if (wantStatus === undefined || !Object.values(wantStatus).length) {
+        setWanted(false)
+      } else {
+        setWanted(true)
+      }
+    }
+
+    getWanted();
   }, [dispatch, postId])
 
   useEffect(() => {
@@ -58,6 +74,16 @@ export default function SinglePost() {
     navigate(`/feed/${postId}`);
   }
 
+  const addWant = async () => {
+    await fetch(`/api/mounts/${post?.featured_mount}/want`);
+    setWanted(!wanted);
+  }
+
+  const removeWant = async () => {
+    await fetch(`/api/mounts/${post?.featured_mount}/unwant`);
+    setWanted(!wanted);
+  }
+
   return post && (
     <div className="single-post-main">
       <NavLink className="back-button" to='/feed'>&lt; Back</NavLink>
@@ -73,6 +99,14 @@ export default function SinglePost() {
           }
           <span className="single-post-mount">{post.featured_mount}</span> <span>owned by</span> <span className="single-post-owner">{post.author && post.author.username}</span>
           <p>{post.caption}</p>
+          <div>
+            {
+              !wanted ?
+              <span className="wanted-mount-selection"><FaRegStar onClick={addWant} className="want-mount-button" /> want?</span>
+              :
+              <span className="wanted-mount-selection"><FaStar onClick={removeWant} className="want-mount-button" /> wanted!</span>
+            }
+          </div>
         </div>
         {
           post && currentUser && (

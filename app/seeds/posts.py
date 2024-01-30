@@ -6,7 +6,7 @@ def seed_posts():
     authorId=2,
     post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed1.jpg',
     caption='First!',
-    featured_mount='Ashes of Alar'
+    featured_mount='Ashes of Al\'ar'
   )
 
   post_2 = Post(
@@ -27,7 +27,7 @@ def seed_posts():
       authorId=3,
       post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed4.jpg',
       caption='500 mounts lets goooooo',
-      featured_mount='Otherworldly Ottuk Carrier'
+      featured_mount='Otterworldly Ottuk Carrier'
   )
 
   post_5 = Post(
@@ -48,14 +48,14 @@ def seed_posts():
       authorId=1,
       post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed4.jpg',
       caption='Woooo',
-      featured_mount='Otherworldly Ottuk Carrier'
+      featured_mount='Otterworldly Ottuk Carrier'
   )
 
   post_8 = Post(
       authorId=2,
       post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed4.jpg',
       caption='Lorem Ipsum!',
-      featured_mount='Otherworldly Ottuk Carrier'
+      featured_mount='Otterworldly Ottuk Carrier'
   )
 
   post_9 = Post(
