@@ -1,0 +1,14 @@
+.wanted-mounts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wowhead-mount-link {
+  text-decoration: none;
+  font-size: large;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
