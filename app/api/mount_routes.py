@@ -55,3 +55,16 @@ def remove_mount_from_wanted(mountName):
     db.session.commit()
 
   return mount.to_dict()
+
+@mount_routes.route('/wanted')
+@login_required
+def get_all_wanted_mounts():
+  """
+  Returns a list of all mounts wanted by the current user
+  """
+
+  user = User.query.get(current_user.id)
+  mounts = user.want_list
+  parsed_mounts = [mount.to_dict() for mount in mounts]
+
+  return parsed_mounts
