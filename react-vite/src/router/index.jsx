@@ -9,6 +9,7 @@ import CreatePostForm from '../components/CreatePostForm/CreatePostForm';
 import SinglePost from '../components/SinglePost/SinglePost';
 import UpdatePostForm from '../components/UpdatePostForm/UpdatePostForm';
 import UpdateCommentForm from '../components/UpdateCommentForm/UpdateCommentForm';
+import WantedMounts from '../components/WantedMounts/WantedMounts';
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
         path: "feed/:postId/comment/:commentId/update",
         element: <UpdateCommentForm />
       },
+      {
+        path: "my-wanted",
+        element: <WantedMounts />
+      }
     ],
   },
 ]);
