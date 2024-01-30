@@ -9,6 +9,12 @@
   height: 300px;
   margin: 8px;
   cursor: pointer;
+  transition-duration: 0.3s;
+  transition-property: transform;
+
+  &:hover{
+    transform: rotate(4deg);
+  }
 }
 
 .post-card-image {
