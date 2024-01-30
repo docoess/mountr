@@ -38,7 +38,7 @@ function mountsReducer(state = [], action) {
     }
 
     case GET_SINGLE_MOUNT: {
-      const newState = [action.payload.name];
+      const newState = [action.payload];
 
       return newState
     }

@@ -21,7 +21,6 @@ export default function SinglePost() {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
 
-
   useEffect(() => {
     const getPost = async () => {
       await dispatch(singlePostThunk(postId));
@@ -40,8 +39,10 @@ export default function SinglePost() {
       }
     }
 
-    getWanted();
-  }, [dispatch, postId])
+    if (currentUser) {
+      getWanted();
+    }
+  }, [dispatch, postId, currentUser])
 
   useEffect(() => {
     const errors = {};
@@ -75,13 +76,21 @@ export default function SinglePost() {
   }
 
   const addWant = async () => {
-    await fetch(`/api/mounts/${post?.featured_mount}/want`);
-    setWanted(!wanted);
+    if (currentUser) {
+      await fetch(`/api/mounts/${post.featured_mount}/want`, {
+      method: 'POST'
+    });
+      setWanted(!wanted);
+    }
   }
 
   const removeWant = async () => {
-    await fetch(`/api/mounts/${post?.featured_mount}/unwant`);
-    setWanted(!wanted);
+    if (currentUser) {
+      await fetch(`/api/mounts/${post.featured_mount}/unwant`, {
+        method: 'PATCH'
+      });
+      setWanted(!wanted);
+    }
   }
 
   return post && (
@@ -102,10 +111,11 @@ export default function SinglePost() {
           <div>
             {
               currentUser &&
-              !wanted ?
+              (!wanted ?
               <span className="wanted-mount-selection"><FaRegStar onClick={addWant} className="want-mount-button" /> want?</span>
               :
               <span className="wanted-mount-selection"><FaStar onClick={removeWant} className="want-mount-button" /> wanted!</span>
+              )
             }
           </div>
         </div>
