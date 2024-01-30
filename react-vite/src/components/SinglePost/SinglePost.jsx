@@ -101,6 +101,7 @@ export default function SinglePost() {
           <p>{post.caption}</p>
           <div>
             {
+              currentUser &&
               !wanted ?
               <span className="wanted-mount-selection"><FaRegStar onClick={addWant} className="want-mount-button" /> want?</span>
               :
