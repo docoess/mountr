@@ -78,8 +78,6 @@ export default function CreatePostForm() {
     getMounts();
   }, [dispatch])
 
-  console.log(mounts)
-
   return (
     <div className="new-post-container">
       <h1 className="new-post-header">Create a new post!</h1>

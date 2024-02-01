@@ -30,7 +30,11 @@
 }
 
 .profile-login-button {
-  height: 50%;
+  height: 36px;
+  width: 36px;
+  border-radius: 8px;
+  background-color: #4e82eb;
+  color: #FFF;
 }
 
 .my-posts-button {

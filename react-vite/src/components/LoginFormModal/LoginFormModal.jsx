@@ -60,7 +60,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        <p className="error">{errors.email}</p>
         <label className="login-modal-input">
           Password
           <input
@@ -70,7 +70,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        <p className="error">{errors.password}</p>
         <button className="demo-login-button" type="submit">Log In</button>
         <button className='demo-login-button' onClick={demoLogin}>Demo User</button>
       </form>

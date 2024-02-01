@@ -11,9 +11,6 @@ export default function MyFeedPage() {
   const { userId } = useParams();
   const currentUser = useSelector(state => state.session.user);
 
-
-  console.log('USER POSTS', userPosts)
-
   let postsAuthor = 'Someone';
   if (Object.values(userPosts).length) {
     postsAuthor = userPosts[0].author_name;

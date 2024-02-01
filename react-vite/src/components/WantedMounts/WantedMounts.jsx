@@ -17,8 +17,6 @@ export default function WantedMounts() {
     getMyWanted();
   }, [dispatch]);
 
-  console.log(myWanted)
-
   return (
     <div className="wanted-mounts-container">
       <h1 className="wanted-mounts-header">My Wanted Mounts</h1>
