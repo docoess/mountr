@@ -14,8 +14,6 @@ def get_mounts():
       'grant_type': 'client_credentials',
   }
 
-  print('MY DATA --->', data)
-
   token_response = requests.post('https://oauth.battle.net/token', data=data)
   tok_res = token_response.json()
   auth_string = tok_res["access_token"]
