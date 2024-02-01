@@ -12,6 +12,18 @@
 
 .new-post-input {
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.new-post-input > span {
+  margin-bottom: 8px;
+}
+
+.new-post-input > input {
+  padding: 4px;
 }
 
 .new-post-form {

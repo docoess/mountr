@@ -117,7 +117,6 @@ export const updatePostThunk = (postId, formData) => async dispatch => {
       return post
     }
   } catch (e) {
-    console.log('update thunk errors', e)
     return e
   }
 }
@@ -132,7 +131,6 @@ export const deletePostThunk = postId => async dispatch => {
     dispatch(deletePost(postId))
   } else {
       const e = await res.json()
-      console.log(e)
       return null
   }
 }
@@ -148,7 +146,6 @@ export const createCommentThunk = (comment, postId) => async dispatch => {
     dispatch(createComment(newComment, postId));
   } else {
     const e = await res.json();
-    console.log(e);
     return null;
   }
 }
@@ -163,7 +160,6 @@ export const deleteCommentThunk = (commentId, postId) => async dispatch => {
     dispatch(deleteComment(commentId, postId));
   } else {
     const e = await res.json();
-    console.log(e);
     return null;
   }
 }

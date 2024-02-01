@@ -1,6 +1,6 @@
 .error {
   height: 25px;
-  color: red;
+  color: rgb(184, 26, 26);
 }
 
 .update-post-container {
@@ -11,6 +11,18 @@
 
 .update-post-input {
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.update-post-input > span {
+  margin-bottom: 8px;
+}
+
+.update-post-input > input {
+  padding: 4px;
 }
 
 .update-post-form {
