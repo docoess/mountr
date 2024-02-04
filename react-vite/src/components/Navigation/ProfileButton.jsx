@@ -52,7 +52,7 @@ function ProfileButton() {
               <li className="username-dropdown">{user.username}</li>
               <li>{user.email}</li>
               <li className="create-new-post-button-container">
-                <NavLink className='create-new-post-button' onClick={closeMenu} to='/feed/new'>Create a Post</NavLink>
+                <NavLink className='create-new-post-button' onClick={closeMenu} to='/feed/new'>Make a Post</NavLink>
               </li>
               {/*<li className="profile-link-button-container">
                 <NavLink className='profile-link-button' onClick={closeMenu} to='/my-wanted'>My Profile</NavLink>

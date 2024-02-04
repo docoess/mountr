@@ -58,6 +58,7 @@
 
   &:hover{
       cursor: pointer;
+      box-shadow: 0 0 8px green;
   }
 }
 
@@ -113,6 +114,7 @@
 
   &:hover{
     cursor: pointer;
+    box-shadow: 0 0 8px greenyellow;
   }
 }
 
@@ -125,6 +127,11 @@
 
 .new-comment-input > input {
   width: 250px;
+  padding: 4px;
+
+  &:focus {
+    box-shadow: 0 0 4px 4px #ff8800;
+  }
 }
 
 .want-mount-button {

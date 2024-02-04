@@ -26,6 +26,7 @@ function LoginFormModal() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
+      navigate('/feed');
       closeModal();
     }
   };
@@ -42,7 +43,7 @@ function LoginFormModal() {
     if(serverResponse){
       setErrors(serverResponse)
     } else {
-      navigate('/feed')
+      navigate('/feed');
       closeModal()
     }
   }
@@ -52,7 +53,7 @@ function LoginFormModal() {
       <h1 className="login-modal-header">Log In</h1>
       <form className='login-modal-form' onSubmit={handleSubmit}>
         <label className="login-modal-input">
-          Email
+          <span>Email</span>
           <input
             type="text"
             value={email}
@@ -62,7 +63,7 @@ function LoginFormModal() {
         </label>
         <p className="error">{errors.email}</p>
         <label className="login-modal-input">
-          Password
+          <span>Password</span>
           <input
             type="password"
             value={password}
@@ -71,8 +72,8 @@ function LoginFormModal() {
           />
         </label>
         <p className="error">{errors.password}</p>
-        <button className="demo-login-button" type="submit">Log In</button>
-        <button className='demo-login-button' onClick={demoLogin}>Demo User</button>
+        <button className="login-form-button" type="submit">Log In</button>
+        <button className='demo-user-login-button' onClick={demoLogin}>Demo User</button>
       </form>
     </div>
   );

@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
+import { useNavigate } from "react-router-dom";
 import "./SignupForm.css";
 
 function SignupFormModal() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -57,6 +59,7 @@ function SignupFormModal() {
       setErrors(serverResponse);
     } else {
       setHasSubmitted(false);
+      navigate('/feed');
       closeModal();
     }
   };
@@ -67,7 +70,7 @@ function SignupFormModal() {
       {errors.server && <p>{errors.server}</p>}
       <form className="signup-form" onSubmit={handleSubmit}>
         <label className="signup-form-input">
-          *Email
+          <span>*Email</span>
           <input
             type="text"
             value={email}
@@ -81,7 +84,7 @@ function SignupFormModal() {
           }
         </p>
         <label className="signup-form-input">
-          *Username
+          <span>*Username</span>
           <input
             type="text"
             value={username}
@@ -95,7 +98,7 @@ function SignupFormModal() {
           }
         </p>
         <label className="signup-form-input">
-          *Password
+        <span>*Password</span>
           <input
             type="password"
             value={password}
@@ -109,7 +112,7 @@ function SignupFormModal() {
           }
         </p>
         <label className="signup-form-input">
-          *Confirm Password
+        <span>*Confirm Password</span>
           <input
             type="password"
             value={confirmPassword}

@@ -14,7 +14,10 @@ function Navigation() {
       </NavLink>
       <div className="right-navbar-container">
         {
-         currentUser && <NavLink className="my-posts-button" to={`/feed/user/${currentUser.id}`}>My Posts</NavLink>
+          currentUser && <NavLink className="my-posts-button" to={`/feed/new`}>Make a Post</NavLink>
+        }
+        {
+          currentUser && <NavLink className="my-posts-button" to={`/feed/user/${currentUser.id}`}>My Posts</NavLink>
         }
         <NavLink className="my-posts-button" to='/feed'>All Posts</NavLink>
         <ProfileButton />
