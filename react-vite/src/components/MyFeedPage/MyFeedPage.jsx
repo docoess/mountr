@@ -31,7 +31,7 @@ export default function MyFeedPage() {
       }
       <div className="main-feed-add-button-container">
         {
-          currentUser && <NavLink className="fake-button" to={'/feed/new'}>Create a Post!</NavLink>
+          currentUser && <NavLink className="fake-button" to={'/feed/new'}>Make a Post!</NavLink>
         }
       </div>
       <div className="all-posts-container">

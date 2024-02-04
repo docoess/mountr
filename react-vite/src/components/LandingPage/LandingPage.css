@@ -6,7 +6,8 @@
 
 .logo-placeholder {
   width: 50%;
-  height: 550px;
+  margin: 10vh 0;
+  height: 25vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,5 +30,6 @@
 
   &:hover{
       cursor: pointer;
+      box-shadow: 0 0 8px greenyellow;
   }
 }
