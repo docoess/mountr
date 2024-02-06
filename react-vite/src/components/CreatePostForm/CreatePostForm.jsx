@@ -11,12 +11,12 @@ export default function CreatePostForm() {
   const navigate = useNavigate();
   const [caption, setCaption] = useState('');
   const [postImage, setPostImage] = useState('');
-  const [featuredMount, setFeaturedMount] = useState('');
   const [imageLoading, setImageLoading] = useState(false)
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [validationErrors, setValidationErrors] = useState({});
   const [imageURL, setImageURL] = useState(placeholderImage);
   const mounts = useSelector(state => state.mounts);
+  const [featuredMount, setFeaturedMount] = useState('Abyss Worm');
 
   useEffect(() => {
     const errors = {};
