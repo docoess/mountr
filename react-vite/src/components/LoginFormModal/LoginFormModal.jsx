@@ -3,6 +3,7 @@ import { thunkLogin } from "../../redux/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+import logo from '../../mountr-logo.jpeg';
 import { useNavigate } from "react-router-dom";
 
 function LoginFormModal() {
@@ -50,7 +51,8 @@ function LoginFormModal() {
 
   return (
     <div className="login-modal-container">
-      <h1 className="login-modal-header">Log In</h1>
+      <img className="modal-logo" src={logo}/>
+      <h2 className="login-modal-header">Log In and start sharing!</h2>
       <form className='login-modal-form' onSubmit={handleSubmit}>
         <label className="login-modal-input">
           <span>Email</span>
