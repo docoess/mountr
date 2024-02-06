@@ -4,6 +4,7 @@ import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
 import { useNavigate } from "react-router-dom";
 import "./SignupForm.css";
+import logo from '../../mountr-logo.jpeg';
 
 function SignupFormModal() {
   const navigate = useNavigate();
@@ -66,7 +67,8 @@ function SignupFormModal() {
 
   return (
     <div className="signup-form-container">
-      <h1 className="signup-header">Sign Up</h1>
+      <img className="modal-logo" src={logo}/>
+      <h3 className="signup-header">Sign Up and start your collection today!</h3>
       {errors.server && <p>{errors.server}</p>}
       <form className="signup-form" onSubmit={handleSubmit}>
         <label className="signup-form-input">

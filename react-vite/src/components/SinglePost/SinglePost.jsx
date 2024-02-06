@@ -20,28 +20,24 @@ export default function SinglePost() {
   const [wanted, setWanted] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
+  const [postLoaded, setPostLoaded] = useState(false);
 
   useEffect(() => {
     const getPost = async () => {
       await dispatch(singlePostThunk(postId));
+      if (currentUser) {
+        const wantStatus = await dispatch(singleMountThunk(postId));
+        if (wantStatus === undefined || !Object.values(wantStatus).length) {
+          setWanted(false)
+        } else {
+          setWanted(true)
+        }
+      }
+
+      setPostLoaded(true)
     }
 
     getPost();
-  }, [dispatch, postId])
-
-  useEffect(() => {
-    const getWanted = async () => {
-      const wantStatus = await dispatch(singleMountThunk(postId));
-      if (wantStatus === undefined || !Object.values(wantStatus).length) {
-        setWanted(false)
-      } else {
-        setWanted(true)
-      }
-    }
-
-    if (currentUser) {
-      getWanted();
-    }
   }, [dispatch, postId, currentUser])
 
   useEffect(() => {
@@ -93,7 +89,7 @@ export default function SinglePost() {
     }
   }
 
-  return post && (
+  return (postLoaded && post) ? (
     <div className="single-post-main">
       <NavLink className="back-button" to='/feed'>&lt; Back</NavLink>
       <div className="single-post-container">
@@ -160,6 +156,11 @@ export default function SinglePost() {
             }
         </div>
       </div>
+    </div>
+  ) :
+  (
+    <div className="single-post-main">
+      <h1 className="loading-text">Loading...</h1>
     </div>
   )
 }
