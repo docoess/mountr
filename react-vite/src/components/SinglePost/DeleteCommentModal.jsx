@@ -22,7 +22,7 @@ export default function DeleteCommentModal({ commentId, postId }) {
 
   return (
     <div className="delete-modal">
-      <h1>Are you sure you want to delete this comment?</h1>
+      <h3>Are you sure you want to delete this comment?</h3>
       <button onClick={handleConfirm} className="delete-modal-button-confirm">Yes</button>
       <button onClick={close} className="delete-modal-button-cancel">No</button>
     </div>
