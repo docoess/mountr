@@ -10,6 +10,7 @@ export default function MyFeedPage() {
   const userPosts = useSelector(state => Object.values(state.posts));
   const { userId } = useParams();
   const currentUser = useSelector(state => state.session.user);
+  const [feedLoaded, setFeedLoaded] = useState(false);
 
   let postsAuthor = 'Someone';
   if (Object.values(userPosts).length) {
@@ -19,12 +20,13 @@ export default function MyFeedPage() {
   useEffect(() => {
     const getPosts = async () => {
       await dispatch(allUsersPostsThunk(userId));
+      setFeedLoaded(true);
     }
 
     getPosts();
   }, [dispatch, userId]);
 
-  return (
+  return feedLoaded ? (
     <div className="main-feed-container">
       {
         currentUser && currentUser.id == userId ? <h1 className="main-feed-header">My Posts</h1> : <h1 className="main-feed-header">{postsAuthor}&apos;s Posts</h1>
@@ -39,6 +41,11 @@ export default function MyFeedPage() {
           <PostCard post={post} key={post.id} />
         ))}
       </div>
+    </div>
+  ) :
+  (
+    <div className="main-feed-container">
+      <h1 className="loading-text">Loading...</h1>
     </div>
   )
 }
