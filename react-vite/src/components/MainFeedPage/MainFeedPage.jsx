@@ -9,16 +9,18 @@ export default function MainFeedPage() {
   const dispatch = useDispatch();
   const allPosts = useSelector(state => Object.values(state.posts));
   const currentUser = useSelector((state) => state.session.user);
+  const [feedLoaded, setFeedLoaded] = useState(false);
 
   useEffect(() => {
     const getPosts = async () => {
       await dispatch(allPostsThunk());
+      setFeedLoaded(true);
     }
 
     getPosts();
   }, [dispatch]);
 
-  return (
+  return feedLoaded ? (
     <div className="main-feed-container">
       <h1 className="main-feed-header">All Posts</h1>
       <div className="main-feed-add-button-container">
@@ -31,6 +33,11 @@ export default function MainFeedPage() {
           <PostCard post={post} key={post.id} />
         ))}
       </div>
+    </div>
+  ) :
+  (
+    <div className="main-feed-container">
+      <h1 className="loading-text">Loading...</h1>
     </div>
   )
 }
