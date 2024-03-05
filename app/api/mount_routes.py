@@ -86,7 +86,7 @@ def get_all_owned_mounts():
     'client_id': BLIZZ_CLIENT_ID,
     'scope': 'wow.profile',
     'state': BLIZZ_STATE,
-    'redirect_uri': 'https://localhost:5173/api/mounts/oauth',
+    'redirect_uri': 'https://mountr.onrender.com/api/mounts/oauth',
     'response_type': 'code'
   }
 
