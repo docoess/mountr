@@ -1,6 +1,8 @@
 from flask_login import login_required, current_user
-from flask import Blueprint, request
+from flask import Blueprint, request, redirect
 from app.models import db, Post, User, Comment, Mount
+import os
+import requests
 
 mount_routes = Blueprint('mount', __name__)
 
@@ -68,3 +70,51 @@ def get_all_wanted_mounts():
   parsed_mounts = [mount.to_dict() for mount in mounts]
 
   return parsed_mounts
+
+@mount_routes.route('/owned')
+@login_required
+def get_all_owned_mounts():
+  """
+  Retrieves a list of the users owned mounts from battle.net
+  """
+
+  BLIZZ_CLIENT_ID = os.environ.get('BLIZZ_CLIENT_ID')
+  BLIZZ_STATE = os.environ.get('BLIZZ_STATE')
+
+  data = {
+    'region': 'us',
+    'client_id': BLIZZ_CLIENT_ID,
+    'scope': 'wow.profile',
+    'state': BLIZZ_STATE,
+    'redirect_uri': 'https://localhost:5173/api/mounts/oauth',
+    'response_type': 'code'
+  }
+
+  return redirect(f"https://oauth.battle.net/authorize?client_id={data['client_id']}&scope={data['scope']}&state={data['state']}&redirect_uri={data['redirect_uri']}&response_type={data['response_type']}", code=302)
+
+
+@mount_routes.route('/oauth')
+@login_required
+def pull_from_oauth():
+  """
+  Verifies the oauth request and imports mounts
+  """
+
+  BLIZZ_CLIENT_ID = os.environ.get('BLIZZ_CLIENT_ID')
+  BLIZZ_SECRET =  os.environ.get('BLIZZ_SECRET')
+
+  state = request.args.get('state')
+  code = request.args.get('code')
+
+  return code
+
+  # data = {
+  #   'client_id': BLIZZ_CLIENT_ID,
+  #   'client_secret': BLIZZ_SECRET,
+  #   'redirect_uri': 'https://localhost',
+  #   'scope': 'wow.profile',
+  #   'grant_type': 'authorization_code',
+  #   'code': code
+  # }
+
+  # token_response = requests.post('')
