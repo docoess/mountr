@@ -8,7 +8,7 @@ owned_mounts = db.Table(
   "owned_mounts",
   db.Model.metadata,
   db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True),
-  db.Column("mount_id", db.Integer, db.ForeignKey(add_prefix_for_prod("mounts.id")), primary_key=True),
+  db.Column("mount_id", db.Integer, db.ForeignKey(add_prefix_for_prod("mounts.blizzId")), primary_key=True),
 )
 
 if environment == "production":
