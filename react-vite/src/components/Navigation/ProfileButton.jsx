@@ -55,7 +55,7 @@ function ProfileButton() {
                 <NavLink className='create-new-post-button' onClick={closeMenu} to='/feed/new'>Make a Post</NavLink>
               </li>
               <li className="profile-link-button-container">
-                <NavLink className='profile-link-button' onClick={closeMenu} to='/my-wanted'>My Profile</NavLink>
+                <NavLink className='profile-link-button' onClick={closeMenu} to='/my-profile'>My Profile</NavLink>
               </li>
               <li>
                 <button className="logout-button" onClick={logout}>Log Out</button>
