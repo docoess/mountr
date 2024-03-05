@@ -49,14 +49,14 @@ def upgrade():
     op.create_table('wanted_mounts',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('mount_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['mount_id'], ['mounts.id'], ),
+    sa.ForeignKeyConstraint(['mount_id'], ['mounts.blizzId'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('user_id', 'mount_id')
     )
     op.create_table('owned_mounts',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('mount_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['mount_id'], ['mounts.id'], ),
+    sa.ForeignKeyConstraint(['mount_id'], ['mounts.blizzId'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('user_id', 'mount_id')
     )
