@@ -9,7 +9,7 @@ import CreatePostForm from '../components/CreatePostForm/CreatePostForm';
 import SinglePost from '../components/SinglePost/SinglePost';
 import UpdatePostForm from '../components/UpdatePostForm/UpdatePostForm';
 import UpdateCommentForm from '../components/UpdateCommentForm/UpdateCommentForm';
-import WantedMounts from '../components/WantedMounts/WantedMounts';
+import MyProfile from '../components/MyProfile/MyProfile';
 
 export const router = createBrowserRouter([
   {
@@ -52,8 +52,8 @@ export const router = createBrowserRouter([
         element: <UpdateCommentForm />
       },
       {
-        path: "my-wanted",
-        element: <WantedMounts />
+        path: "my-profile",
+        element: <MyProfile />
       }
     ],
   },
