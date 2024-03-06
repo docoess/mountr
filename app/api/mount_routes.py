@@ -106,15 +106,24 @@ def pull_from_oauth():
   state = request.args.get('state')
   code = request.args.get('code')
 
-  return code
+  data = {
+    'client_id': BLIZZ_CLIENT_ID,
+    'client_secret': BLIZZ_SECRET,
+    'scope': 'wow.profile',
+    'state': state,
+    'grant_type': 'authorization_code',
+    'code': code
+  }
 
-  # data = {
-  #   'client_id': BLIZZ_CLIENT_ID,
-  #   'client_secret': BLIZZ_SECRET,
-  #   'redirect_uri': 'https://localhost',
-  #   'scope': 'wow.profile',
-  #   'grant_type': 'authorization_code',
-  #   'code': code
-  # }
+  token_response = requests.post('https://oauth.battle.net/token', data=data)
+  tok_res = token_response.json()
+  auth_string = tok_res["access_token"]
+  oauth_headers = {
+      'Authorization': f'Bearer {auth_string}',
+      'Battlenet-Namespace': 'static-us'
+  }
 
-  # token_response = requests.post('')
+  auth_response = requests.get('https://us.api.blizzard.com/profile/user/wow/collections/mounts', headers=oauth_headers)
+  auth_res = auth_response.json()
+
+  return auth_res
