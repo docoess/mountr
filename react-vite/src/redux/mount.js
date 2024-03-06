@@ -1,6 +1,5 @@
 const GET_MOUNTS = '/mounts/GET_MOUNTS';
 const GET_SINGLE_MOUNT = '/mounts/GET_SINGLE_MOUNT';
-const GET_WANTED_MOUNTS = '/mounts/GET_WANTED_MOUNTS';
 
 const getAllMounts = mounts => ({
   type: GET_MOUNTS,
@@ -10,11 +9,6 @@ const getAllMounts = mounts => ({
 const getSingleMount = mount => ({
   type: GET_SINGLE_MOUNT,
   payload: mount
-})
-
-const getWantedMounts = mounts => ({
-  type: GET_WANTED_MOUNTS,
-  payload: mounts
 })
 
 export const allMountsThunk = () => async dispatch => {
@@ -35,15 +29,6 @@ export const singleMountThunk = (postId) => async dispatch => {
   }
 }
 
-export const allWantedMountsThunk = () => async dispatch => {
-  const res = await fetch('/api/mounts/wanted');
-  if (res.ok) {
-    const mounts = await res.json();
-    dispatch(getWantedMounts(mounts));
-    return mounts;
-  }
-}
-
 function mountsReducer(state = [], action) {
   switch (action.type) {
     case GET_MOUNTS: {
@@ -54,12 +39,6 @@ function mountsReducer(state = [], action) {
 
     case GET_SINGLE_MOUNT: {
       const newState = [action.payload];
-
-      return newState;
-    }
-
-    case GET_WANTED_MOUNTS: {
-      const newState = action.payload;
 
       return newState;
     }
