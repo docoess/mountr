@@ -8,11 +8,15 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import postsReducer from './post';
 import mountsReducer from "./mount";
+import ownedMountsReducer from "./owned";
+import wantedMountsReducer from "./wanted";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   posts: postsReducer,
   mounts: mountsReducer,
+  wanted: wantedMountsReducer,
+  owned: ownedMountsReducer
 });
 
 let enhancer;

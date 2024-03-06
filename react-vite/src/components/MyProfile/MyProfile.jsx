@@ -1,4 +1,5 @@
-import { allWantedMountsThunk } from "../../redux/mount";
+import { allWantedMountsThunk } from "../../redux/wanted";
+import { allOwnedMountsThunk } from "../../redux/owned";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -7,15 +8,16 @@ import './MyProfile.css'
 
 export default function MyProfile() {
   const dispatch = useDispatch();
-  const myWanted = useSelector(state => Object.values(state.mounts));
-  const myOwned = useSelector(state => Object.values(state.mounts));
+  const myWanted = useSelector(state => Object.values(state.wanted));
+  const myOwned = useSelector(state => Object.values(state.owned));
 
   useEffect(() => {
-    const getMyWanted = async () => {
+    const getMyOwnedAndWanted = async () => {
+      await dispatch(allOwnedMountsThunk());
       await dispatch(allWantedMountsThunk());
     }
 
-    getMyWanted();
+    getMyOwnedAndWanted();
   }, [dispatch]);
 
   return (

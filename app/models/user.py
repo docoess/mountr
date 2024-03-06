@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .wanted import wanted_mounts
+from .owned import owned_mounts
 
 
 class User(db.Model, UserMixin):
@@ -18,6 +19,7 @@ class User(db.Model, UserMixin):
     posts = db.relationship("Post", back_populates="author")
     comments = db.relationship("Comment", back_populates="comment_author")
     want_list = db.relationship("Mount", secondary=wanted_mounts, back_populates="mounts_wanted")
+    owned_list = db.relationship("Mount", secondary=owned_mounts, back_populates="mounts_owned")
 
     @property
     def password(self):
