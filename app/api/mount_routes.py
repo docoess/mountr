@@ -140,19 +140,21 @@ def pull_from_oauth():
   auth_response = requests.get(f"https://us.api.blizzard.com/profile/user/wow/collections/mounts?namespace=profile-us&locale=en_US&access_token={auth_string}", headers=oauth_headers)
   auth_res = auth_response.json()
 
-  mounts = auth_res['mounts']
-  mount_list = [{"name": mount["name"], "id": mount["id"]} for mount in mounts]
+  return auth_res
 
-  user = User.query.get(current_user.id)
+  # mounts = auth_res['mounts']
+  # mount_list = [{"name": mount["name"], "id": mount["id"]} for mount in mounts]
 
-  for mount in mount_list:
-    mnt = Mount.query.filter(Mount.name == mount['name']).one()
+  # user = User.query.get(current_user.id)
 
-    if mnt not in user.owned_list:
-      user.owned_list.append(mnt)
+  # for mount in mount_list:
+  #   mnt = Mount.query.filter(Mount.name == mount['name']).one()
 
-  db.session.commit()
+  #   if mnt not in user.owned_list:
+  #     user.owned_list.append(mnt)
 
-  parsed_mounts = [mount.to_dict() for mount in user.owned_list]
+  # db.session.commit()
 
-  return parsed_mounts
+  # parsed_mounts = [mount.to_dict() for mount in user.owned_list]
+
+  # return parsed_mounts
