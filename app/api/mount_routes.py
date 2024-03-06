@@ -141,18 +141,21 @@ def pull_from_oauth():
   auth_res = auth_response.json()
 
   mounts = auth_res['mounts']
-  mount_list = [{"name": mount["mount"]["name"], "id": mount["mount"]["id"]} for mount in mounts]
 
-  user = User.query.get(current_user.id)
+  return mounts
 
-  for mount in mount_list:
-    mnt = Mount.query.filter(Mount.name == mount['name']).one()
+  # mount_list = [{"name": mount["mount"]["name"], "id": mount["mount"]["id"]} for mount in mounts]
 
-    if mnt not in user.owned_list:
-      user.owned_list.append(mnt)
+  # user = User.query.get(current_user.id)
 
-  db.session.commit()
+  # for mount in mount_list:
+  #   mnt = Mount.query.filter(Mount.name == mount['name']).one()
 
-  parsed_mounts = [mount.to_dict() for mount in user.owned_list]
+  #   if mnt not in user.owned_list:
+  #     user.owned_list.append(mnt)
 
-  return parsed_mounts
+  # db.session.commit()
+
+  # parsed_mounts = [mount.to_dict() for mount in user.owned_list]
+
+  # return parsed_mounts
