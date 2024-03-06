@@ -71,9 +71,22 @@ def get_all_wanted_mounts():
 
   return parsed_mounts
 
-@mount_routes.route('/owned')
+@mount_routes.route('/all_owned')
 @login_required
 def get_all_owned_mounts():
+  """
+  Retrieves a list of the users owned mounts
+  """
+
+  user = User.query.get(current_user.id)
+  mounts = user.owned_list
+  parsed_mounts = [mount.to_dict() for mount in mounts]
+
+  return parsed_mounts
+
+@mount_routes.route('/owned')
+@login_required
+def get_owned_mounts():
   """
   Retrieves a list of the users owned mounts from battle.net
   """
