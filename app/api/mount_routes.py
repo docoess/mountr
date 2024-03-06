@@ -124,7 +124,7 @@ def pull_from_oauth():
       'Battlenet-Namespace': 'static-us'
   }
 
-  auth_response = requests.get('https://us.api.blizzard.com/profile-us/user/wow/collections/mounts', headers=oauth_headers)
+  auth_response = requests.get(f"https://us.api.blizzard.com/profile/user/wow/collections/mounts?namespace=profile-us&locale=en_US&access_token={auth_string}", headers=oauth_headers)
   auth_res = auth_response.json()
 
   return auth_res
