@@ -112,10 +112,11 @@ def pull_from_oauth():
     'scope': 'wow.profile',
     'state': state,
     'grant_type': 'authorization_code',
+    'redirect_uri': 'https://mountr.onrender.com/api/mounts/oauth',
     'code': code
   }
 
-  token_response = requests.post('https://oauth.battle.net/token', data=data)
+  token_response = requests.post(f'https://oauth.battle.net/token?client_id={data['client_id']}&client_secret={data['client_secret']}&grant_type={data['grant_type']}&code={data['code']}&scope={data['scope']}&redirect_uri={data['redirect_uri']}')
   tok_res = token_response.json()
   auth_string = tok_res["access_token"]
   oauth_headers = {
