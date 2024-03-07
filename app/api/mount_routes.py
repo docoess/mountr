@@ -154,7 +154,4 @@ def pull_from_oauth():
 
     db.session.commit()
 
-
-  parsed_mounts = [mount.to_dict() for mount in user.owned_list]
-
-  return parsed_mounts
+  return redirect('https://mountr.onrender.com/my-profile', code=302)
