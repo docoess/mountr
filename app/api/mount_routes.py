@@ -91,9 +91,11 @@ def get_owned_mounts():
   Retrieves a list of the users owned mounts from battle.net
   """
 
+  # Pull in the .env entries for a bnet dev account
   BLIZZ_CLIENT_ID = os.environ.get('BLIZZ_CLIENT_ID')
   BLIZZ_STATE = os.environ.get('BLIZZ_STATE')
 
+  # Init an object/dict to easily keep track of variables inserted into the following redirect fstring
   data = {
     'region': 'us',
     'client_id': BLIZZ_CLIENT_ID,
@@ -103,6 +105,7 @@ def get_owned_mounts():
     'response_type': 'code'
   }
 
+  # Send the initial request to the bnet oauth uri
   return redirect(f"https://oauth.battle.net/authorize?client_id={data['client_id']}&scope={data['scope']}&state={data['state']}&redirect_uri={data['redirect_uri']}&response_type={data['response_type']}", code=302)
 
 
@@ -113,6 +116,7 @@ def pull_from_oauth():
   Verifies the oauth request and imports mounts
   """
 
+  # Pull in the .env entries for a bnet dev account
   BLIZZ_CLIENT_ID = os.environ.get('BLIZZ_CLIENT_ID')
   BLIZZ_SECRET =  os.environ.get('BLIZZ_SECRET')
 
@@ -125,7 +129,7 @@ def pull_from_oauth():
     'scope': 'wow.profile',
     'state': state,
     'grant_type': 'authorization_code',
-    'redirect_uri': 'https://mountr.onrender.com/api/mounts/oauth',
+    'redirect_uri': 'https://mountr.onrender.com/my-profile',
     'code': code
   }
 

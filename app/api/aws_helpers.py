@@ -32,7 +32,7 @@ def upload_file_to_s3(file, acl="public-read"):
             }
         )
     except Exception as e:
-        # in case the your s3 upload fails
+        # in case the s3 upload fails
         return {"errors": str(e)}
 
     return {"url": f"{S3_IMG_LOCATION}{file.filename}"}
@@ -40,7 +40,7 @@ def upload_file_to_s3(file, acl="public-read"):
 
 def remove_file_from_s3(file_url):
   # AWS needs the image file name, not the URL,
-  # so you split that out of the URL
+  # so split that out of the URL
     key = file_url.rsplit("/", 1)[1]
     try:
         s3_img.delete_object(
