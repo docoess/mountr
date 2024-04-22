@@ -105,6 +105,11 @@ def get_owned_mounts():
     'response_type': 'code'
   }
 
+  ENV = os.environ.get('FLASK_ENV')
+
+  if ENV == 'dev':
+    data['redirect_uri'] = 'http://localhost:5173/api/mounts/oauth'
+
   # Send the initial request to the bnet oauth uri
   return redirect(f"https://oauth.battle.net/authorize?client_id={data['client_id']}&scope={data['scope']}&state={data['state']}&redirect_uri={data['redirect_uri']}&response_type={data['response_type']}", code=302)
 
@@ -133,6 +138,11 @@ def pull_from_oauth():
     'code': code
   }
 
+  ENV = os.environ.get('FLASK_ENV')
+
+  if ENV == 'dev':
+    data['redirect_uri'] = 'http://localhost:5173/api/mounts/oauth'
+
   token_response = requests.post(f"https://oauth.battle.net/token?client_id={data['client_id']}&client_secret={data['client_secret']}&grant_type={data['grant_type']}&code={data['code']}&scope={data['scope']}&redirect_uri={data['redirect_uri']}")
   tok_res = token_response.json()
   print(tok_res)
@@ -159,4 +169,4 @@ def pull_from_oauth():
 
   db.session.commit()
 
-  return redirect('https://mountr.onrender.com/my-profile', code=302)
+  return redirect('http://localhost:5173/my-profile', code=302)
