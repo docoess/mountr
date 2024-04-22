@@ -157,6 +157,6 @@ def pull_from_oauth():
     if mnt not in user.owned_list:
       user.owned_list.append(mnt)
 
-    db.session.commit()
+  db.session.commit()
 
   return redirect('https://mountr.onrender.com/my-profile', code=302)
