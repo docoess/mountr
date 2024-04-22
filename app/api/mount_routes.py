@@ -169,4 +169,9 @@ def pull_from_oauth():
 
   db.session.commit()
 
-  return redirect('http://localhost:5173/my-profile', code=302)
+  ENV = os.environ.get('FLASK_ENV')
+
+  if ENV == 'dev':
+    return redirect('http://localhost:5173/my-profile', code=302)
+  else:
+    return redirect('https://mountr.onrender.com/my-profile', code=302)
