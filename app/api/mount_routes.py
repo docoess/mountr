@@ -129,12 +129,13 @@ def pull_from_oauth():
     'scope': 'wow.profile',
     'state': state,
     'grant_type': 'authorization_code',
-    'redirect_uri': 'https://mountr.onrender.com/my-profile',
+    'redirect_uri': 'https://mountr.onrender.com/api/mounts/oauth',
     'code': code
   }
 
   token_response = requests.post(f"https://oauth.battle.net/token?client_id={data['client_id']}&client_secret={data['client_secret']}&grant_type={data['grant_type']}&code={data['code']}&scope={data['scope']}&redirect_uri={data['redirect_uri']}")
   tok_res = token_response.json()
+  print(tok_res)
   auth_string = tok_res["access_token"]
   oauth_headers = {
       'Authorization': f'Bearer {auth_string}',
@@ -151,7 +152,7 @@ def pull_from_oauth():
   user = User.query.get(current_user.id)
 
   for mount in mount_list:
-    mnt = Mount.query.filter(Mount.name == mount['name']).one()
+    mnt = Mount.query.filter(Mount.blizzId == mount['id']).one()
 
     if mnt not in user.owned_list:
       user.owned_list.append(mnt)
