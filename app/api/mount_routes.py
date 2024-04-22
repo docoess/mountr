@@ -169,4 +169,4 @@ def pull_from_oauth():
 
   db.session.commit()
 
-  return redirect('https://mountr.onrender.com/my-profile', code=302)
+  return redirect('http://localhost:5173/my-profile', code=302)
