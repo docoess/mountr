@@ -27,9 +27,9 @@ export default function MyProfile() {
         <div className="owned-mounts-list-container">
           {
             myOwned && myOwned.length > 0 ? (
-              <p className="owned-mounts-description">Here are your mounts!</p>
+              <p className="owned-mounts-description">Here are your {myOwned.length} mounts!</p>
             ) : (
-              <p className="owned-mounts-description">You haven&apos;t imported your mounts yet!</p>
+              <p className="owned-mounts-description">You haven&apos;t <a href='https://mountr.onrender.com/api/mounts/owned'>imported your mounts</a> yet!</p>
             )
           }
           {
