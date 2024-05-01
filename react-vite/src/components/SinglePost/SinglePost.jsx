@@ -142,20 +142,23 @@ export default function SinglePost() {
           )
         }
       </div>
-      <div className="comments-container-holder">
-        <div className="comments-container">
-            {
-              post?.comments && Object.values(post.comments).map(comment => (
-                <div className="comment" key={comment.id}>
-                <CommentCard comment={comment} />
-                  {
-                  currentUser && comment?.authorId === currentUser.id && <span className="comment-buttons"><NavLink to={`/feed/${postId}/comment/${comment.id}/update`} className={"fake-button-update"}>Update</NavLink><OpenModalMenuItem itemText={'Delete'} modalComponent={<DeleteCommentModal postId={postId} commentId={comment.id} />} className={"fake-button-delete"} /></span>
-                  }
-                </div>
-              ))
-            }
-        </div>
-      </div>
+      {
+        post && Object.keys(post.comments).length > 0 && (
+          <div className="comments-container-holder">
+            <div className="comments-container">
+                {
+                  post?.comments && Object.values(post.comments).map(comment => (
+                    <div className="comment" key={comment.id}>
+                    <CommentCard comment={comment} />
+                      {
+                      currentUser && comment?.authorId === currentUser.id && <span className="comment-buttons"><NavLink to={`/feed/${postId}/comment/${comment.id}/update`} className={"fake-button-update"}>Update</NavLink><OpenModalMenuItem itemText={'Delete'} modalComponent={<DeleteCommentModal postId={postId} commentId={comment.id} />} className={"fake-button-delete"} /></span>
+                      }
+                    </div>
+                  ))
+                }
+            </div>
+          </div>
+      )}
     </div>
   ) :
   (
