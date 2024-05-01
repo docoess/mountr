@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #283618;
+  color: #fefae0;
+  margin-top: 0;
 }
 
 .all-posts-container {

@@ -4,14 +4,16 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid black;
-  margin-bottom: 10px;
+  background-color: #fefae0;
+  margin-top: 0;
+  padding: 2px 2px 2px 0;
 }
 
 .profile-dropdown {
   display: flex;
   flex-direction: column;
-  background-color: #85a5e9;
-  border: 2px black solid;
+  background-color: #283618;
+  border: 2px #dda15e solid;
   justify-content: end;
   position: absolute;
   border-radius: 5px;
@@ -22,18 +24,21 @@
 
 .profile-dropdown > li{
   list-style: none;
+  color: #fefae0;
 }
 
 .navigation-logo {
   height: 50px;
   border-radius: 8px;
+  margin-left: 8px;
+  margin-top: 2px;
 }
 
 .profile-login-button {
   height: 36px;
   width: 36px;
   border-radius: 8px;
-  background-color: #4e82eb;
+  background-color: #606c38;
   color: #FFF;
 
   &:hover {
@@ -46,7 +51,7 @@
   margin-right: 20px;
   border: 1px solid black;
   border-radius: 8px;
-  background-color: #4e82eb;
+  background-color: #606c38;
   color: white;
   font-weight: bold;
   padding: 5px;
@@ -79,7 +84,7 @@
   margin-bottom: 2px;
   border: 1px solid black;
   border-radius: 8px;
-  background-color: #4e82eb;
+  background-color: #606c38;
   color: white;
   font-weight: bold;
   padding: 4px;
@@ -95,8 +100,8 @@
   border: 1px solid black;
   border-radius: 8px;
   margin: 2px 0;
-  background-color: #4e82eb;
-  color: white;
+  background-color: #606c38;
+  color: #fefae0;
   font-weight: bold;
   padding: 4px;
   text-decoration: none;

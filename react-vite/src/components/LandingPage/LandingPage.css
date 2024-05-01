@@ -4,6 +4,11 @@
   align-items: center;
 }
 
+.landing-page-container {
+  background-color: #283618;
+  color: #fefae0;;
+}
+
 .logo-placeholder {
   width: 50%;
   margin: 10vh 0;
@@ -21,8 +26,8 @@
 .fake-button{
   border: 1px solid black;
   border-radius: 8px;
-  background-color: #4e82eb;
-  color: white;
+  background-color: #606c38;
+  color: #fefae0;
   font-weight: bold;
   padding: 5px;
   margin: 2px;
@@ -32,4 +37,8 @@
       cursor: pointer;
       box-shadow: 0 0 8px greenyellow;
   }
+}
+
+.welcome-text-container > p, .entry-text-container > .fake-button {
+  margin: 8px 0;
 }
