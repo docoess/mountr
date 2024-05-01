@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #283618;
+  color: #fefae0;
 }
 
 .single-post-image {
@@ -9,7 +11,7 @@
   max-width: 800px;
   max-height: 800px;
   border-radius: 16px;
-  box-shadow: -8px 8px 4px rgb(80, 80, 80);
+  box-shadow: -4px 4px 2px #fefae0;
 }
 
 .single-post-details {
@@ -27,28 +29,32 @@
   align-items: center;
   width: 50%;
   margin-top: 8px;
+  margin-bottom: 10px;
+  border-radius: 8px;
   padding: 4px;
+  background-color: #dda15e;
 }
 
 .comments-container {
   display: flex;
   flex-direction: column;
   align-items:flex-start;
-  width: 50%;
+  width: 80%;
   margin-top: 8px;
-  padding: 4px;
+  padding: 12px;
+  color: #283618;
 }
 
 .comment {
   margin: 4px;
   width: 100%;
-  border-left: 2px solid black;
+  border-left: 2px solid #bc6c25;
   padding-left: 8px;
 }
 
 .fake-button-update {
   border: 1px solid black;
-  background-color: #4e82eb;
+  background-color: #606c38;
   border-radius: 8px;
   color: white;
   font-weight: bold;
@@ -90,14 +96,14 @@
 .back-button {
   align-self: flex-start;
   border: 1px solid black;
-  background-color: #686868;
+  background-color: #606c38;
   border-radius: 8px;
   max-width: 60px;
   list-style: none;
   color: white;
   font-weight: bold;
   padding: 4px;
-  margin: 2px;
+  margin: 8px;
   text-decoration: none;
 
   &:hover{
@@ -106,7 +112,7 @@
 }
 
 .comment-submit-button {
-  background-color: green;
+  background-color: #606c38;
   margin-left: 4px;
   border-radius: 8px;
   color: white;
@@ -123,6 +129,8 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  background-color: #283618;
+  color: #fefae0;
 }
 
 .new-comment-input > input {

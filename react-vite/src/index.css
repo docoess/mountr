@@ -1,4 +1,9 @@
 /* TODO: Add sitewide styles */
 * {
   font-family: Kanit;
+  margin: 0;
+}
+
+body {
+  background-color: #fefae0;
 }
