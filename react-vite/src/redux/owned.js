@@ -5,8 +5,8 @@ const getOwnedMounts = mounts => ({
   payload: mounts
 })
 
-export const allOwnedMountsThunk = () => async dispatch => {
-  const res = await fetch('/api/mounts/all_owned');
+export const allOwnedMountsThunk = (pageNum = 1) => async dispatch => {
+  const res = await fetch(`/api/mounts/all_owned/${pageNum}`);
   if (res.ok) {
     const mounts = await res.json();
     dispatch(getOwnedMounts(mounts));

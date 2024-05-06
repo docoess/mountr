@@ -71,18 +71,26 @@ def get_all_wanted_mounts():
 
   return parsed_mounts
 
-@mount_routes.route('/all_owned')
+@mount_routes.route('/all_owned/<int:page_num>', methods=['GET'])
 @login_required
-def get_all_owned_mounts():
+def get_all_owned_mounts(page_num):
   """
   Retrieves a list of the users owned mounts
   """
 
+  query_limit = 20
+  query_offset = query_limit * (page_num - 1)
+
   user = User.query.get(current_user.id)
   mounts = user.owned_list
   parsed_mounts = [mount.to_dict() for mount in mounts]
+  parsed_mounts.sort(key=lambda x_name: x_name["name"])
+  paginated_mounts = parsed_mounts[query_offset:(query_offset + query_limit)]
+  paginated_mounts.append(len(parsed_mounts))
 
-  return parsed_mounts
+  print('=-=-=-=-=-=-= MOUNT EXAMPLE =-=-=-=-=-=-=', paginated_mounts)
+
+  return paginated_mounts
 
 @mount_routes.route('/owned')
 @login_required
