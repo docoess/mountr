@@ -18,6 +18,10 @@
   align-items: center;
 }
 
+.owned-mounts-description {
+  text-align: center;
+}
+
 .wowhead-mount-link {
   text-decoration: none;
   font-size: large;
@@ -30,4 +34,14 @@
 
 .wowhead-logo {
   width: 40px;
+}
+
+.pagination-page {
+  text-align: center;
+}
+
+.pagination-number {
+  &:hover {
+    cursor: pointer;
+  }
 }

@@ -10,15 +10,32 @@ export default function MyProfile() {
   const dispatch = useDispatch();
   const myWanted = useSelector(state => Object.values(state.wanted));
   const myOwned = useSelector(state => Object.values(state.owned));
+  let pageSize = 20;
+  let pageNum = 1;
+  let countStart = pageSize * (pageNum - 1) + 1;
+  let totalMountCount = myOwned && myOwned.pop();
+  let maxPages = myOwned && Math.ceil(totalMountCount / pageSize);
+  let pageList = maxPages && range(maxPages);
 
   useEffect(() => {
     const getMyOwnedAndWanted = async () => {
-      await dispatch(allOwnedMountsThunk());
+      await dispatch(allOwnedMountsThunk(pageNum));
       await dispatch(allWantedMountsThunk());
     }
 
     getMyOwnedAndWanted();
-  }, [dispatch]);
+  }, [dispatch, pageNum]);
+
+  function range(size, startAt = 1) {
+    return [...Array(size).keys()].map(i => i + startAt);
+  }
+
+  async function goToPage(page) {
+    pageNum = parseInt(page.target.getAttribute("value"));
+    countStart = pageSize * (pageNum - 1) + 1;
+    await dispatch(allOwnedMountsThunk(pageNum));
+  }
+
 
   return (
     <div className="profile-container">
@@ -27,7 +44,7 @@ export default function MyProfile() {
         <div className="owned-mounts-list-container">
           {
             myOwned && myOwned.length > 0 ? (
-              <p className="owned-mounts-description">Here are your {myOwned.length} mounts!</p>
+              <p className="owned-mounts-description">Here are your mounts!</p>
             ) : (
               <p className="owned-mounts-description">You haven&apos;t <a href='https://mountr.onrender.com/api/mounts/owned'>imported your mounts</a> yet!</p>
             )
@@ -39,6 +56,20 @@ export default function MyProfile() {
               ))
             )
           }
+          <div className="pagination-container">
+            {
+              myOwned && myOwned.length > 0 && pageList && pageList.length && (
+                <>
+                  <p className="pagination-page">Page</p>
+                  {
+                  pageList.map(page => (
+                    <span className="pagination-number" onClick={e => {goToPage(e)}} key={page} value={page}>{page} </span>
+                  ))
+                  }
+                </>
+              )
+            }
+          </div>
         </div>
       </div>
       <div className="wanted-mounts-container">
