@@ -22,6 +22,11 @@
   text-align: center;
 }
 
+.owned-mounts-reimport-link {
+  text-align: center;
+  font-size: small;
+}
+
 .wowhead-mount-link {
   text-decoration: none;
   font-size: large;

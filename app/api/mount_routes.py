@@ -99,6 +99,13 @@ def get_owned_mounts():
   Retrieves a list of the users owned mounts from battle.net
   """
 
+  user = User.query.get(current_user.id)
+
+  if len(user.owned_list) > 0:
+    user.owned_list.clear()
+
+    db.session.commit()
+
   # Pull in the .env entries for a bnet dev account
   BLIZZ_CLIENT_ID = os.environ.get('BLIZZ_CLIENT_ID')
   BLIZZ_STATE = os.environ.get('BLIZZ_STATE')
