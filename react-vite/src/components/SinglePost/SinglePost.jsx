@@ -143,7 +143,7 @@ export default function SinglePost() {
         }
       </div>
       {
-        post && Object.keys(post.comments).length > 0 && (
+        post && Object.keys(post.comments).length > 0 ? (
           <div className="comments-container-holder">
             <div className="comments-container">
                 {
@@ -158,7 +158,14 @@ export default function SinglePost() {
                 }
             </div>
           </div>
-      )}
+      ) : (
+        <div className="comments-container-holder">
+          <div className="comments-container">
+            <p>No comments yet! Why not leave one?</p>
+          </div>
+        </div>
+      )
+      }
     </div>
   ) :
   (
