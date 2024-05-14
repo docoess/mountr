@@ -26,7 +26,8 @@ class Post(db.Model):
           "post_image": self.post_image,
           "caption": self.caption,
           "featured_mount": self.featured_mount,
-          "author_name": self.author.username
+          "author_name": self.author.username,
+          "comments_num": len(self.post_comments)
       }
 
       if printer:
