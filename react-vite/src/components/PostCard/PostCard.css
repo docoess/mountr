@@ -6,7 +6,7 @@
   box-shadow: -4px 4px 2px #fefae0;
   border-radius: 12px;
   max-width: 400px;
-  height: 300px;
+  height: 340px;
   margin: 8px;
   cursor: pointer;
   transition-duration: 0.3s;
@@ -23,10 +23,12 @@
   margin: 8px 0;
 }
 
+
 .post-card-image {
   max-width: 250px;
   max-height: 141px;
   margin: 0 20px;
+  margin-bottom: 8px;
   border-radius: 8px;
   box-shadow: -8px 8px 4px rgb(80, 80, 80);
 }
@@ -36,4 +38,9 @@
   width: 100%;
   max-width: 260px;
   text-align: center;
+  font-style: italic;
+}
+
+.post-card-mount-name, .post-card-caption, .post-card-author, .post-card-comments-num {
+  color: #fefae0;
 }
