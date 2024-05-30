@@ -103,7 +103,7 @@ export default function SinglePost() {
             )
           }
           <span className="single-post-mount">{post.featured_mount}</span> <span>owned by</span> <span className="single-post-owner">{post.author && post.author.username}</span>
-          <p>{post.caption}</p>
+          <p className="single-post-caption">{post.caption}</p>
           <div>
             {
               currentUser &&
