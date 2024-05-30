@@ -14,7 +14,7 @@ class Post(db.Model):
   authorId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
   post_image = db.Column(db.String(255), nullable=False)
   caption = db.Column(db.String(50), nullable=False)
-  featured_mount = db.Column(db.String(50), nullable=False)
+  featured_mount = db.Column(db.String(100), nullable=False)
 
   author = db.relationship("User", back_populates="posts")
   post_comments = db.relationship("Comment", back_populates="post", cascade="all, delete")

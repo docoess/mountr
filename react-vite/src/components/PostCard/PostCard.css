@@ -39,6 +39,7 @@
   max-width: 260px;
   text-align: center;
   font-style: italic;
+  word-break: break-word;
 }
 
 .post-card-mount-name, .post-card-caption, .post-card-author, .post-card-comments-num {
