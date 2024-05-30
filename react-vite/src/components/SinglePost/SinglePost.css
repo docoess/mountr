@@ -23,6 +23,10 @@
   font-size: 18pt;
 }
 
+.single-post-caption {
+  word-break: break-word;
+}
+
 .comments-container-holder {
   display: flex;
   flex-direction: column;
