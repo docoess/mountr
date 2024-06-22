@@ -23,6 +23,7 @@ export default function MainFeedPage() {
   return feedLoaded ? (
     <div className="main-feed-container">
       <h1 className="main-feed-header">All Posts</h1>
+      <span className="search-span">Search: </span>
       <div className="main-feed-add-button-container">
         {
           currentUser && <NavLink className="fake-button" to={'/feed/new'}>Make a Post!</NavLink>
