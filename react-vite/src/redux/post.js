@@ -7,6 +7,7 @@ const CREATE_COMMENT = '/comments/CREATE_COMMENT';
 const DELETE_COMMENT = '/comments/DELETE';
 const UPDATE_COMMENT = '/comments/UPDATE';
 const GET_USERS_POSTS = '/posts/user/GET_POSTS';
+const GET_SEARCH_POSTS = '/posts/SEARCH/GET_POSTS';
 
 const getAllPosts = posts => ({
   type: GET_POSTS,
@@ -21,6 +22,11 @@ const getUserPosts = posts => ({
 const getSinglePost = post => ({
   type: GET_SINGLE_POST,
   payload: post
+})
+
+const getSearchPosts = posts => ({
+  type: GET_SEARCH_POSTS,
+  payload: posts
 })
 
 const createPost = post => ({
@@ -62,6 +68,18 @@ export const allPostsThunk = () => async dispatch => {
     }
     dispatch(getAllPosts(posts))
     return posts
+  }
+}
+
+export const searchPostsThunk = searchQuery => async dispatch => {
+  const res = await fetch(`/api/feed/search/${searchQuery}`);
+  if (res.ok) {
+    const posts = await res.json();
+    if (posts.errors) {
+      return posts.errors;
+    }
+    dispatch(getSearchPosts(posts))
+    return posts;
   }
 }
 
@@ -183,6 +201,15 @@ function postsReducer(state = {}, action) {
   switch (action.type) {
     case GET_POSTS: {
       const newState = {...state};
+      action.payload.forEach(post => {
+        newState[post.id] = post
+      });
+
+      return newState;
+    }
+
+    case GET_SEARCH_POSTS: {
+      const newState = {};
       action.payload.forEach(post => {
         newState[post.id] = post
       });

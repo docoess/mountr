@@ -34,6 +34,22 @@ def get_my_posts(id):
   user_posts = [post.to_dict() for post in Post.query.filter(Post.authorId == id).all()]
   return user_posts
 
+@feed_routes.route('/search/<string:searchQuery>')
+def get_search_posts(searchQuery):
+  """
+  Returns all posts where the search query is found in the featured mount's name
+  """
+
+  posts = [post.to_dict() for post in Post.query.all()]
+
+  search_posts = []
+
+  for post in posts:
+    if searchQuery.lower() in post["featured_mount"].lower():
+      search_posts.append(post)
+
+  return search_posts
+
 
 @feed_routes.route('/<int:id>')
 def get_single_post(id):
