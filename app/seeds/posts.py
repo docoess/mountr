@@ -52,7 +52,7 @@ def seed_posts():
   )
 
   post_8 = Post(
-      authorId=1,
+      authorId=8,
       post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed8.jpg',
       caption='Old school orc mount',
       featured_mount='Swift Timber Wolf'
@@ -101,7 +101,7 @@ def seed_posts():
   )
 
   post_15 = Post(
-      authorId=1,
+      authorId=8,
       post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed15.jpg',
       caption='Creepy hand thing? Sure.',
       featured_mount='Hand of Nilganihmaht'
@@ -129,7 +129,7 @@ def seed_posts():
   )
 
   post_19 = Post(
-      authorId=1,
+      authorId=8,
       post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed19.jpg',
       caption='RIP Archaeology',
       featured_mount='Spirit of Eche\'ro'
@@ -142,8 +142,94 @@ def seed_posts():
       featured_mount='Frenzied Feltalon'
   )
 
+  post_21 = Post(
+      authorId=4,
+      post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed21.jpg',
+      caption='I paid how much for this?!',
+      featured_mount='Mighty Caravan Brutosaur'
+  )
+
+  post_22 = Post(
+      authorId=5,
+      post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed22.jpg',
+      caption='Such neck!',
+      featured_mount='Mighty Caravan Brutosaur'
+  )
+
+  post_23 = Post(
+      authorId=6,
+      post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed23.jpg',
+      caption='Longboi parade!',
+      featured_mount='Mighty Caravan Brutosaur'
+  )
+
+  post_24 = Post(
+      authorId=7,
+      post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed24.jpg',
+      caption='Longbois Rep!',
+      featured_mount='Mighty Caravan Brutosaur'
+  )
+
+  post_25 = Post(
+      authorId=1,
+      post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed25.jpg',
+      caption='Richboi!',
+      featured_mount='Mighty Caravan Brutosaur'
+  )
+
+  post_26 = Post(
+      authorId=1,
+      post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed26.jpg',
+      caption='I love gooooold!',
+      featured_mount='Astral Emperor\'s Serpent'
+  )
+
+  post_27 = Post(
+      authorId=1,
+      post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed27.jpg',
+      caption='A real beast.',
+      featured_mount='Fel Iron Juggernaut'
+  )
+
+  post_28 = Post(
+      authorId=1,
+      post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed28.jpg',
+      caption='So regal!',
+      featured_mount='August Phoenix'
+  )
+
+  post_29 = Post(
+      authorId=1,
+      post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed29.jpg',
+      caption='Nice backdrop on this one!',
+      featured_mount='Bloody Skyscreamer'
+  )
+
+  post_30 = Post(
+      authorId=1,
+      post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed30.jpg',
+      caption='KFP!',
+      featured_mount='Ashes of Al\'ar'
+  )
+
+  post_31 = Post(
+      authorId=1,
+      post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed31.jpg',
+      caption='The goodest greenboi',
+      featured_mount='Delugen'
+  )
+
+  post_32 = Post(
+      authorId=1,
+      post_image='https://mountr-image-bucket.s3.us-west-2.amazonaws.com/seed32.jpg',
+      caption='Skelington Raptor!',
+      featured_mount='Fossilized Raptor'
+  )
+
   posts = [post_1, post_2, post_3, post_4, post_5, post_6, post_7, post_8, post_9, post_10,
-           post_11, post_12, post_13, post_14, post_15, post_16, post_17, post_18, post_19, post_20]
+           post_11, post_12, post_13, post_14, post_15, post_16, post_17, post_18, post_19, post_20,
+           post_21, post_22, post_23, post_24, post_25, post_26, post_27, post_28, post_29, post_30,
+           post_31, post_32]
   [db.session.add(post) for post in posts]
   db.session.commit()
 
