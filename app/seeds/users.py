@@ -4,16 +4,19 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+    demo = User(username='Demo', email='demo@aa.io', password='password')
+    marnie = User(username='marnie', email='marnie@aa.io', password='password')
+    bobbie = User(username='bobbie', email='bobbie@aa.io', password='password')
+    demo2 = User(username='Demo2', email='demo2@aa.io', password='password')
+    demo3 = User(username='Demo3', email='demo3@aa.io', password='password')
+    demo4 = User(username='Demo4', email='demo4@aa.io', password='password')
+    demo5 = User(username='Demo5', email='demo5@aa.io', password='password')
+    demo6 = User(username='Demo6', email='demo6@aa.io', password='password')
+    demo7 = User(username='Demo7', email='demo7@aa.io', password='password')
+    demo8 = User(username='Demo8', email='demo8@aa.io', password='password')
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    users = [demo, marnie, bobbie, demo2, demo3, demo4, demo5, demo6, demo7, demo8]
+    [db.session.add(user) for user in users]
     db.session.commit()
 
 
@@ -28,5 +31,5 @@ def undo_users():
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM users"))
-        
+
     db.session.commit()

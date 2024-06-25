@@ -10,6 +10,7 @@ import SinglePost from '../components/SinglePost/SinglePost';
 import UpdatePostForm from '../components/UpdatePostForm/UpdatePostForm';
 import UpdateCommentForm from '../components/UpdateCommentForm/UpdateCommentForm';
 import MyProfile from '../components/MyProfile/MyProfile';
+import Search from '../components/Search/Search';
 
 export const router = createBrowserRouter([
   {
@@ -54,7 +55,11 @@ export const router = createBrowserRouter([
       {
         path: "my-profile",
         element: <MyProfile />
-      }
+      },
+      {
+        path: "feed/search/:searchQuery",
+        element: <Search />
+      },
     ],
   },
 ]);

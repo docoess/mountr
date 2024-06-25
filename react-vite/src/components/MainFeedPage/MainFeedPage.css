@@ -13,6 +13,17 @@
   padding: 12px;
 }
 
+.search-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.search-submit-button {
+  height: 30px;
+}
+
 @media (max-width: 620px) {
   .all-posts-container {
     grid-template-columns: 1fr;
