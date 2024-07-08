@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { searchPostsThunk } from "../../redux/post";
@@ -18,11 +18,12 @@ export default function Search() {
     }
 
     getPosts();
-  }, [dispatch]);
+  }, [dispatch, searchQuery]);
 
   return feedLoaded ? (
     <div className="main-feed-container">
-      <h1 className="main-feed-header">Results for "{searchQuery}"</h1>
+      <NavLink className="back-button" to='/feed'>&lt; Back</NavLink>
+      <h1 className="main-feed-header">Results for &quot;{searchQuery}&quot;</h1>
       <div className="all-posts-container">
         {searchPosts.map(post => (
           <PostCard post={post} key={post.id} />
