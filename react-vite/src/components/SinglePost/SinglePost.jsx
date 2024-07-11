@@ -93,7 +93,9 @@ export default function SinglePost() {
     <div className="single-post-main">
       <NavLink className="back-button" to='/feed'>&lt; Back</NavLink>
       <div className="single-post-container">
-        <img className="single-post-image" src={post.post_image}/>
+        <a href={post.post_image} target="_">
+          <img className="single-post-image" src={post.post_image}/>
+        </a>
         <div className="single-post-details">
           {
             post && currentUser && post.authorId == currentUser.id && (
