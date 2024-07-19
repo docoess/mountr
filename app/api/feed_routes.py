@@ -3,6 +3,8 @@ from .aws_helpers import get_unique_filename, remove_file_from_s3, upload_file_t
 from flask import Blueprint, request
 from ..forms import PostForm, UpdatePostForm, CommentForm, UpdateCommentForm
 from app.models import db, Post, User, Comment, Mount
+from PIL import Image
+from urllib.request import urlopen
 
 feed_routes = Blueprint('feed', __name__)
 
@@ -95,11 +97,22 @@ def create_post():
     post_image.filename = get_unique_filename(post_image.filename)
     upload = upload_file_to_s3(post_image)
 
+    # post_thumb = Image.open(urlopen(upload['url']))
+    # post_thumb.filename = 'thumb_' + post_image.filename
+    # newsize = (250, 141)
+    # post_thumb.thumbnail(newsize)
+    # upload_thumb = upload_file_to_s3(post_thumb)
+
+
+
     if "url" not in upload:
       return upload
+    # if "url" not in upload_thumb:
+    #   return upload_thumb
 
     new_post = Post(
       post_image = upload['url'],
+      # post_thumb = upload_thumb['url'],
       caption = form.data['caption'],
       featured_mount = form.data['featured_mount'],
       authorId = current_user.id
