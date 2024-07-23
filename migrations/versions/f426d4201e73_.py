@@ -42,7 +42,6 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('authorId', sa.Integer(), nullable=True),
     sa.Column('post_image', sa.String(length=255), nullable=False),
-    # sa.Column('post_thumb', sa.String(length=255), nullable=True),
     sa.Column('caption', sa.String(length=50), nullable=False),
     sa.Column('featured_mount', sa.String(length=100), nullable=False),
     sa.ForeignKeyConstraint(['authorId'], ['users.id'], ),
