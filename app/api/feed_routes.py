@@ -3,9 +3,6 @@ from .aws_helpers import get_unique_filename, remove_file_from_s3, upload_file_t
 from flask import Blueprint, request
 from ..forms import PostForm, UpdatePostForm, CommentForm, UpdateCommentForm
 from app.models import db, Post, User, Comment, Mount
-from PIL import Image
-from urllib.request import urlopen
-import os
 
 feed_routes = Blueprint('feed', __name__)
 
@@ -69,12 +66,15 @@ def get_single_post(id):
 
   comments = {comment['id']: comment for comment in comments}
 
+  mount = Mount.query.filter(Mount.name == post.featured_mount).one_or_none()
+
   author = post.author
   author_dict = author.to_dict()
 
   return_dict = post.to_dict()
   return_dict['author'] = author_dict
   return_dict['comments'] = comments
+  return_dict['blizzId'] = mount.blizzId
 
   return return_dict
 
