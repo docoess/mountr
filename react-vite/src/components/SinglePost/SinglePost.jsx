@@ -5,6 +5,7 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import DeletePostModal from "./DeletePostModal";
 import DeleteCommentModal from "./DeleteCommentModal";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import wowheadLogo from '../../wowhead-logo.png';
 import './SinglePost.css';
 import { createCommentThunk, singlePostThunk } from "../../redux/post";
 import { singleMountThunk } from "../../redux/mount";
@@ -104,7 +105,7 @@ export default function SinglePost() {
               </div>
             )
           }
-          <span className="single-post-mount">{post.featured_mount}</span> <span>owned by</span> <span className="single-post-owner">{post.author && post.author.username}</span>
+          <a className="wowhead-mount-link" href={`https://www.wowhead.com/mount/${post.blizzId}`}><img className="wowhead-logo" src={wowheadLogo} /></a><span className="single-post-mount">{post.featured_mount}</span> <span>owned by</span> <span className="single-post-owner">{post.author && post.author.username}</span>
           <p className="single-post-caption">{post.caption}</p>
           <div>
             {
