@@ -66,7 +66,7 @@ def get_single_post(id):
 
   comments = {comment['id']: comment for comment in comments}
 
-  mount = Mount.query.filter(Mount.name == post.featured_mount).one_or_none()
+  mount = Mount.query.filter(Mount.name == post.featured_mount).first()
 
   author = post.author
   author_dict = author.to_dict()
