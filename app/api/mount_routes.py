@@ -15,7 +15,7 @@ def get_wanted_mount(postId):
   post = Post.query.get(postId)
   mount_name = post.featured_mount
   user = User.query.get(current_user.id)
-  mount = Mount.query.filter(Mount.name == mount_name).one_or_none()
+  mount = Mount.query.filter(Mount.name == mount_name).first()
 
   if mount in user.want_list:
     return mount.to_dict()
