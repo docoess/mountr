@@ -31,7 +31,7 @@ def add_mount_to_wanted(mountName):
   Adds the specified mount to the user's wanted list
   """
 
-  mount = Mount.query.filter(Mount.name == mountName).one()
+  mount = Mount.query.filter(Mount.name == mountName).first()
   user = User.query.get(current_user.id)
 
   if mount not in user.want_list:
@@ -48,7 +48,7 @@ def remove_mount_from_wanted(mountName):
   Removes the specified mount from the user's wanted list
   """
 
-  mount = Mount.query.filter(Mount.name == mountName).one()
+  mount = Mount.query.filter(Mount.name == mountName).first()
   user = User.query.get(current_user.id)
 
   if mount in user.want_list:
