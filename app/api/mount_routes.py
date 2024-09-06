@@ -88,8 +88,6 @@ def get_all_owned_mounts(page_num):
   paginated_mounts = parsed_mounts[query_offset:(query_offset + query_limit)]
   paginated_mounts.append(len(parsed_mounts))
 
-  print('=-=-=-=-=-=-= MOUNT EXAMPLE =-=-=-=-=-=-=', paginated_mounts)
-
   return paginated_mounts
 
 @mount_routes.route('/owned')
@@ -160,7 +158,6 @@ def pull_from_oauth():
 
   token_response = requests.post(f"https://oauth.battle.net/token?client_id={data['client_id']}&client_secret={data['client_secret']}&grant_type={data['grant_type']}&code={data['code']}&scope={data['scope']}&redirect_uri={data['redirect_uri']}")
   tok_res = token_response.json()
-  print(tok_res)
   auth_string = tok_res["access_token"]
   oauth_headers = {
       'Authorization': f'Bearer {auth_string}',
