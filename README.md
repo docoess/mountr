@@ -55,6 +55,11 @@ For ease of use, a demo account is provided!
 
 ![demo-acct-btn-ex](https://github.com/user-attachments/assets/682cae1b-11a5-4527-aa85-b4eda78c7a75)
 
+### After that, you can make a post or view the user profile!
+
+![profile-btn-ex](https://github.com/user-attachments/assets/b9615a96-c74c-4c57-9978-04473180ad05)
+
+
 
 # Connect
 
