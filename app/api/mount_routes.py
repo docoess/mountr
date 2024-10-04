@@ -78,7 +78,7 @@ def get_all_owned_mounts(page_num):
   Retrieves a list of the users owned mounts
   """
 
-  query_limit = 20
+  query_limit = 30
   query_offset = query_limit * (page_num - 1)
 
   user = User.query.get(current_user.id)
