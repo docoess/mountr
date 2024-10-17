@@ -66,7 +66,7 @@ export default function MyProfile() {
                   <p className="pagination-page">Pages</p>
                   {
                   pageList.map(page => (
-                    <span className="pagination-number" onClick={e => {goToPage(e)}} key={page} value={page}>{page} </span>
+                    <NavLink className="pagination-number" onClick={e => {goToPage(e)}} key={page} value={page}>{page} </NavLink>
                   ))
                   }
                 </>
