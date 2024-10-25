@@ -1,12 +1,12 @@
 import { allWantedMountsThunk } from "../../redux/wanted";
 import { allOwnedMountsThunk } from "../../redux/owned";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import MountListing from "./MountListing";
 import './MyProfile.css'
 
 export default function MyProfile() {
+  const inTesting = false;
   const dispatch = useDispatch();
   const myWanted = useSelector(state => Object.values(state.wanted));
   const myOwned = useSelector(state => Object.values(state.owned));
@@ -16,6 +16,7 @@ export default function MyProfile() {
   let totalMountCount = myOwned && myOwned.pop();
   let maxPages = myOwned && Math.ceil(totalMountCount / pageSize);
   let pageList = maxPages && range(maxPages);
+  let mountApiUrl;
 
   useEffect(() => {
     const getMyOwnedAndWanted = async () => {
@@ -31,11 +32,21 @@ export default function MyProfile() {
   }
 
   async function goToPage(page) {
+    const pageIndicators = document.querySelectorAll('.pagination-number');
+    pageIndicators.forEach(pageNumber => {
+      pageNumber.classList.remove('active-page');
+    })
+    page.target.classList.add('active-page');
     pageNum = parseInt(page.target.getAttribute("value"));
     countStart = pageSize * (pageNum - 1) + 1;
     await dispatch(allOwnedMountsThunk(pageNum));
   }
 
+  if (inTesting) {
+    mountApiUrl = 'http://localhost:5173/api/mounts/owned'
+  } else {
+    mountApiUrl = 'https://mountr.onrender.com/api/mounts/owned'
+  }
 
   return (
     <div className="profile-container">
@@ -46,10 +57,10 @@ export default function MyProfile() {
             myOwned && myOwned.length > 0 ? (
               <>
                 <p className="owned-mounts-description">Here are your {totalMountCount} mounts!</p>
-                <p className="owned-mounts-reimport-link">Got some new mounts? <a href='https://mountr.onrender.com/api/mounts/owned'>Re-import now</a>!</p>
+                <p className="owned-mounts-reimport-link">Got some new mounts? <a href={mountApiUrl}>Re-import now</a>!</p>
               </>
             ) : (
-              <p className="owned-mounts-description">You haven&apos;t <a href='https://mountr.onrender.com/api/mounts/owned'>imported your mounts</a> yet!</p>
+              <p className="owned-mounts-description">You haven&apos;t <a href={mountApiUrl}>imported your mounts</a> yet!</p>
             )
           }
           {
@@ -66,7 +77,7 @@ export default function MyProfile() {
                   <p className="pagination-page">Pages</p>
                   {
                   pageList.map(page => (
-                    <NavLink className="pagination-number" onClick={e => {goToPage(e)}} key={page} value={page}>{page} </NavLink>
+                    <span className="pagination-number" onClick={e => {goToPage(e)}} key={page} value={page}>{page} </span>
                   ))
                   }
                 </>
