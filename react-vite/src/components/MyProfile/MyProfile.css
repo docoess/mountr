@@ -41,6 +41,11 @@
   width: 40px;
 }
 
+.active-page {
+  text-decoration: underline;
+  font-weight: bolder;
+}
+
 .pagination-page {
   text-align: center;
 }
