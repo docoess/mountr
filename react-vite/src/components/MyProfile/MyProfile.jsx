@@ -33,7 +33,6 @@ export default function MyProfile() {
 
   async function goToPage(page) {
     const pageIndicators = document.querySelectorAll('.pagination-number');
-    console.log(page);
     pageIndicators.forEach(pageNumber => {
       pageNumber.classList.remove('active-page');
     })
