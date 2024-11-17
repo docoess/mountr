@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #283618;
+  background-color: #040b77;
   color: #fefae0;
 }
 
@@ -46,7 +46,7 @@
   width: 80%;
   margin-top: 8px;
   padding: 12px;
-  color: #283618;
+  color: #040b77;
 }
 
 .comment {
@@ -133,7 +133,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color: #283618;
+  background-color: #040b77;
   color: #fefae0;
 }
 
