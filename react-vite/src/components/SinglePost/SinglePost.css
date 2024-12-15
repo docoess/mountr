@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   background-color: #283618;
-  color: #fefae0;
+  color: #fffad8;
 }
 
 .single-post-image {
@@ -11,7 +11,7 @@
   max-width: 800px;
   max-height: 800px;
   border-radius: 16px;
-  box-shadow: -4px 4px 2px #fefae0;
+  box-shadow: -4px 4px 2px #fffad8;
 }
 
 .single-post-details {
@@ -134,7 +134,7 @@
   align-items: center;
   width: 100%;
   background-color: #283618;
-  color: #fefae0;
+  color: #fffad8;
 }
 
 .new-comment-input > input {
