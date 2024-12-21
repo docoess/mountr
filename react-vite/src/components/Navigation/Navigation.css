@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid black;
-  background-color: #fffad8;
+  background-color: #fefae0;
   margin-top: 0;
   padding: 2px 2px 2px 0;
 }
@@ -24,7 +24,7 @@
 
 .profile-dropdown > li{
   list-style: none;
-  color: #fffad8;
+  color: #fefae0;
 }
 
 .navigation-logo {
@@ -101,7 +101,7 @@
   border-radius: 8px;
   margin: 2px 0;
   background-color: #606c38;
-  color: #fffad8;
+  color: #fefae0;
   font-weight: bold;
   padding: 4px;
   text-decoration: none;
