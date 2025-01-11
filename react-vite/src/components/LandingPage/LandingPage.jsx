@@ -14,7 +14,7 @@ export default function LandingPage() {
       </div>
       <div className="entry-text-container">
         <h3>If you&apos;re ready to get your collection going, then...</h3>
-        <NavLink to='/feed' className={'fake-button'}>Hop on in!</NavLink>
+        <NavLink to='/feed' className={'fake-button'}>Saddle Up!</NavLink>
       </div>
     </div>
   )
