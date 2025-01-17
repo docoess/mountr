@@ -141,6 +141,7 @@ def pull_from_oauth():
   state = request.args.get('state')
   code = request.args.get('code')
 
+  # Set the payload of the oauth token request
   data = {
     'client_id': BLIZZ_CLIENT_ID,
     'client_secret': BLIZZ_SECRET,
@@ -156,6 +157,7 @@ def pull_from_oauth():
   if ENV == 'dev':
     data['redirect_uri'] = 'http://localhost:5173/api/mounts/oauth'
 
+  # Request a token with the payload from above
   token_response = requests.post(f"https://oauth.battle.net/token?client_id={data['client_id']}&client_secret={data['client_secret']}&grant_type={data['grant_type']}&code={data['code']}&scope={data['scope']}&redirect_uri={data['redirect_uri']}")
   tok_res = token_response.json()
   auth_string = tok_res["access_token"]
@@ -164,6 +166,7 @@ def pull_from_oauth():
       'Battlenet-Namespace': 'static-us'
   }
 
+  # Request authorization using acquired token
   auth_response = requests.get(f"https://us.api.blizzard.com/profile/user/wow/collections/mounts?namespace=profile-us&locale=en_US&access_token={auth_string}", headers=oauth_headers)
   auth_res = auth_response.json()
 
